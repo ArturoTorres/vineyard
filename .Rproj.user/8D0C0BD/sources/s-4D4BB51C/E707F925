@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563785832438.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E707F925",
+    "lastKnownWriteTime" : 1564147498,
+    "last_content_update" : 1564147498501,
+    "path" : "~/Documents/02_working_post-doc/3-Production/02_projects/02_VinoManAOP/03_R/vineyard/R/Aux.R",
+    "project_path" : "R/Aux.R",
+    "properties" : {
+        "cursorPosition" : "48,0",
+        "scrollLine" : "12",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

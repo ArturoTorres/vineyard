@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563784475045.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1257481937",
+    "id" : "FD4A823C",
+    "lastKnownWriteTime" : 1564151378,
+    "last_content_update" : 1564151378327,
+    "path" : "~/Documents/02_working_post-doc/3-Production/02_projects/02_VinoManAOP/03_R/Budburst_Models.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "97,14",
+        "scrollLine" : "67"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

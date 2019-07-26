@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1563782581561.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2435447357",
+    "id" : "3D42F60D",
+    "lastKnownWriteTime" : 1564151378,
+    "last_content_update" : 1564151378262,
+    "path" : "~/Documents/02_working_post-doc/3-Production/02_projects/02_VinoManAOP/03_R/vineyard/R/BudBurst.R",
+    "project_path" : "R/BudBurst.R",
+    "properties" : {
+        "cursorPosition" : "22,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,404 @@
+# synchronization of Git repositories
+# author: J.A. Torres-Matallana
+# organization: Luxembourg Institute of Science and technology (LIST)
+#               Wagenigen University and Research Centre (WUR)   
+# date: 22.01.2018 - 22.01.2018
+
+
+## Github's personal access token
+# 4e9fdcacd46bfb7051fe24452bab8abdad3f2297
+
+## Gitlab's personal access token
+# ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6XwnkqJaZonVB5pzohF/BR9vZnclEjOym9UBIjWRF8AS7Z2ztJQo+UAgow4NfNfDwyQTvwb2OkOUpvTIV0ASvKfDvJcYBN7TDFJW6yOmCQa/r6/dHUisi8tLEKnvGMKHbK0qUnssdvYQpiPJdhyXqfIGbJmnZxm/UHLejyiKSrlpt7s8eCY+0rF+EKIrhYrlTyiZAPOUcIsdwPxzweTCKmiFJBo1Q+I8rn5ENvnjI/Ixw51F+c6rr3qjyo/4W7DX5GiEI1jxUSUy4KYE7TVaDWa2uoROvZwsApOQGesO+x2OuVAHswjM/jV6MaAqgnkQhEdr6PWE5pMZzK+LS5NlLcih6MoI8JygYVOhp0A84pWzVKpGkf1f8dsaimxmdVOXerDNpJ+9od6A4vIaRd9eTMRRp0joFyG+ifbzVD8Zf2yCKo9B3LRS//2FilWt0+ZH/FJSsecdc1QuG1ZPVG2+k6j8Z5dRbJFnQaQih/eAX1WIXnq6qYB5i+bgNB4IkN6cQpSLJ3vMFKCFBHdSj/MKT7pxuTNDPEYAaDLuk4H7Q6755EYf/e2HIkJJwF/UBUgUVhsN0GWTgpZt6EWzG1mILV89nN/LUtvuvrMU6DNCcRrBqiShlxOKOnYHhdCypCGCb9WdwIxYfMJ4LJlT3TfiQZzXLQ137+WVlUm0TMzAX0Q== jairoatorres@gmail.com
+
+
+
+##---------------------------------------------------------------------
+## user's configuration (I)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/03_II-Year/07_journalPapers/02_Springer-EMA"
+
+## commit label
+commit.label <- 'published online on 20180613'
+
+## Github repository
+username   <- "ArturoTorres"
+password   <- "sehajsamadhi1A"
+
+repository <- "github.com/ERIN-LIST/EMA-EmiStatR.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration uncertainty article
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/03_II-Year/07_journalPapers/01_Elsevier-EMS"
+
+## commit label
+commit.label <- 'work in progress -- attending Gerards comments'
+
+# ## Github repository
+# username   <- "ArturoTorres"
+# password   <- "sehajsamadhi1A"
+
+# repository <- "github.com/ERIN-LIST/EMA-EmiStatR.git"
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/quics/EMS-EmiStatR-uncertainty.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (II)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/03_II-Year/05_models/06_uncertainty/Uncert-opt-comp"
+
+## commit label
+commit.label <- 'added new datasets from DWD and ASTA'
+
+# ## Github repository
+# username   <- "ArturoTorres"
+# password   <- "sehajsamadhi1A"
+# 
+# repository <- "github.com/ERIN-LIST/Uncert-opt-comp.git"
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/quics/Uncert-opt-comp.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (III)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/05_models/01_stUPscales/stUPscales/"
+
+## commit label
+commit.label <- 'excluded hexabin plot from Correction.radar.R '
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/quics/stUPscales.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (IV - EmiStatR)
+##---------------------------------------------------------------------
+
+## working directory
+wdir <-  "/home/atorres/EmiStatR"
+
+## commit label
+commit.label <- 'version EmiStatR_121_2'
+
+## Github repository
+username   <- "ArturoTorres"
+password   <- "sehajsamadhi1A"
+
+repository <- "github.com/ERIN-LIST/EmiStatR.git"
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/quics/EmiStatR.git"
+
+## credentials
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+# ##---------------------------------------------------------------------
+# ## user's configuration (V -  github)
+# ##---------------------------------------------------------------------
+# ## working directory
+# wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/22_ThesisBook"
+# 
+# ## commit label
+# commit.label <- 'updated Chapter 1 General Introduction'
+# 
+# ## Github repository
+# username   <- "ArturoTorres"
+# password   <- "sehajsamadhi1A"
+# 
+# repository <- "github.com/ERIN-LIST/ThesisBook_AT.git"
+# 
+# credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (V -  gitlab)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/22_ThesisBook"
+
+## commit label
+commit.label <- 'pulling first commit from Gerard -- Title and Chapter1 comments -- compiling main_text '
+
+## Git repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/arturo.torres/phd_thesisbook_at.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (Conferences)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/06_conference_papers"
+
+## commit label
+commit.label <- 'conference_materials'
+
+## Github repository
+username   <- "ArturoTorres"
+password   <- "sehajsamadhi1A"
+
+repository <- "github.com/ERIN-LIST/Conferences_atorres.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (datasets)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/09_datasets"
+
+## commit label
+commit.label <- 'Germany and Luxembourg datasets'
+
+## Github repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/quics/datasets.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## user's configuration (paper extensions gstat + stUPscales, Benedikt, Edzer)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/07_journal_papers/03_collaborative_Ben_Edzer"
+
+## commit label
+commit.label <- 'created disaggregation workflow R-script and updated tex file'
+
+## Git repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/arturo.torres/paper_extension_gstat_stupscales.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## spacetime (functions)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "~/Documents/02_working/3-Production/05_IV-Year/05_models/13_spacetime"
+
+## commit label
+commit.label <- 'updated Gen_spacetime_parallel -- 6 cores for Luxemborug.R'
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/arturo.torres/spacetime_functions.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## SparkR 
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/05_models/14_spark"
+
+## commit label
+commit.label <- 'updated SparkR_NA-filling_stl.R for only NA cell filling computation'
+
+## Gitlab repository
+username   <- "Arturo.Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/arturo.torres/spark_tests.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## SparkR (public at personal account)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/05_models/14_spark"
+
+## commit label
+commit.label <- 'created install_dot_R'
+
+## Gitlab repository
+username   <- "Arturo_Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "gitlab.com/Arturo_Torres/spark_tests.git"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## Uncertainty propagation demo 
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "/home/atorres/Documents/02_working/3-Production/05_IV-Year/05_models/16_UncertaintyPropagation-demo"
+
+## commit label
+commit.label <- 'updated 01'
+
+## Gitlab repository
+username   <- "Arturo_Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "gitlab.com/Arturo_Torres/uncertaintypropagation"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## Vineyard (VinoManAOP project)
+##---------------------------------------------------------------------
+## working directory
+wdir <-  "~/Documents/02_working_post-doc/3-Production/02_projects/02_VinoManAOP/03_R/vineyard"
+
+## commit label
+commit.label <- 'initial commit'
+
+## Gitlab repository
+username   <- "Arturo_Torres"
+password   <- "sehajsamadhi1A"
+
+repository <- "git.list.lu/geocomputation/vineyard"
+
+credential <- paste0("https://", username, ":", password, "@", repository)
+
+##---------------------------------------------------------------------
+## commit changes locally
+##---------------------------------------------------------------------
+## change to working directory
+setwd(wdir)
+
+## to see status of files
+system("git status")
+
+## to look previous status of commmits
+system("git log")
+
+## find and write big files in .gitignore
+system("find . -size +50M | cat >> .gitignore")
+
+## to stage files
+system("git add .")
+
+## to commit changes with label
+system(paste0("git commit -a -m '", commit.label, "'"))
+
+## to see status of files
+system("git status")
+
+## to look previous status of commmits
+system("git log")
+
+##---------------------------------------------------------------------
+## configuring remote.origin.url for Github repository and pushing
+##---------------------------------------------------------------------
+system(paste0("git config remote.origin.url ", credential))
+  
+system(paste0("git push ", credential, " master"))
+
+
+##---------------------------------------------------------------------
+## amending changing message and push (forced)
+##---------------------------------------------------------------------
+## to change commit message (run from terminal)
+# git commit --amend
+
+## then push (forced)
+system(paste0("git push --force"))
+
+##---------------------------------------------------------------------
+## amending without changing message and push (forced)
+##---------------------------------------------------------------------
+## to change commit message (run from terminal)
+system(paste0("git commit --amend --no-edit"))
+
+## then push (forced)
+system(paste0("git push --force"))
+
+##---------------------------------------------------------------------
+## combine two last commits in last one (rebase)
+##---------------------------------------------------------------------
+## If you're currently on your "commit 1", and the commit you want 
+## to merge, "commit 2", is the previous commit, you can run 
+## git rebase -i HEAD~2 and change the first word of the second line 
+## from "pick" to "squash". Then write your file, and quit. 
+## Git will squash your first commit into your second last commit.
+
+## to rebase two last comits (run from terminal)
+# git rebase -i HEAD~2
+
+## then push (forced)
+system(paste0("git push --force"))
+
+## if fatal: The current branch master has no upstream branch.
+## To push the current branch and set the remote as upstream, use:
+
+system(paste0("git push --set-upstream origin master"))
+
+##---------------------------------------------------------------------
+## fetching and merging
+##---------------------------------------------------------------------
+system(paste0("git checkout master"))
+
+system(paste0("git fetch ", credential))
+
+system(paste0("git merge origin/master"))
+
+
+# My work on test branch is done and I am ready to merge it back to master. 
+# Here are the two ways I can think of:
+#   
+# A:
+# git checkout test
+# git pull origin master
+# git push origin test
+# git checkout master
+# git pull origin test 
+# 
+# B:
+# git checkout test
+# git pull origin master
+# git checkout master
+# git merge test
+
+##---------------------------------------------------------------------
+## pulling from Github repository
+##---------------------------------------------------------------------
+system(paste0("git pull ", credential))
+
+##---------------------------------------------------------------------
+## untracking files (because of large size)
+##---------------------------------------------------------------------
+file.large <- "MC_VAR-conditionalP_v1204/input/RT_ts_s_Goesdorf2010.RData"
+
+# to delete everything in the history of that file
+system(paste0("git filter-branch -f --index-filter 'git rm -r --cached --ignore-unmatch ",file.large, "' HEAD"))
+
+# to remove a file or folder from the stagging area
+system(paste0("git reset HEAD -- '", file.large, "'"))
