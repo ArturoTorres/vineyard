@@ -1,11 +1,11 @@
 #' Compute the degree-days by the single triangle algorithm
 #'
-#' @param x xts object containing the input data
-#' @param t.min daily minimum air temperature
-#' @param t.max daily maximum air temperature
-#' @param t.zero threshold temperature for vine growth
+#' @param x xts object containing the input data.
+#' @param t.min daily minimum air temperature.
+#' @param t.max daily maximum air temperature.
+#' @param t.zero threshold temperature for vine growth.
 #'
-#' @return a vector with the degree-days for vine growth
+#' @return a vector with the degree-days for vine growth.
 #'
 #' @importFrom xts xts
 

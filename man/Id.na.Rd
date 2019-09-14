@@ -7,10 +7,10 @@
 Id.na(x)
 }
 \arguments{
-\item{x}{the input time series as xts object}
+\item{x}{the input time series as xts object.}
 }
 \value{
-a vector with the index for NAs data in the time series
+a vector with the index for NA data in the time series.
 }
 \description{
 Find indexes for NA data in time series

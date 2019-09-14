@@ -7,10 +7,12 @@
 \method{plot}{na}(x, ids.na)
 }
 \arguments{
-\item{x}{the input time series as xts object}
+\item{x}{the input time series as xts object.}
+
+\item{ids.na}{the vector which coniains indexes for NA data as provided by the Id.na function.}
 }
 \value{
-plots with the NAs highlighted
+plots with the NAs highlighted.
 }
 \description{
 Plot NA data in time series

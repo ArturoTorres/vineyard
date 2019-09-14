@@ -7,10 +7,10 @@
 FillNA(x)
 }
 \arguments{
-\item{x}{the input time series as xts object}
+\item{x}{the input time series as xts object.}
 }
 \value{
-a time series with the NAs replaced by data according to the na.locf zoo function
+a time series with the NAs replaced by data according to the na.locf zoo function.
 }
 \description{
 Fill NA data in time series

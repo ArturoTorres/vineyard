@@ -1,10 +1,8 @@
 #' Raw data to xts object
 #'
-#' @param t.min daily minimum air temperature
-#' @param t.max daily maximum air temperature
-#' @param t.zero threshold temperature for vine growth
+#' @param data the dataframe to convert to xts time series.
 #'
-#' @return a vector with the degree-days for vine growth
+#' @return the xts object for the input dataframe.
 #'
 #' @importFrom xts xts
 
@@ -16,9 +14,9 @@ Raw2xts <- function(data){
 
 #' Find indexes for NA data in time series
 #'
-#' @param x the input time series as xts object
+#' @param x the input time series as xts object.
 #'
-#' @return a vector with the index for NAs data in the time series
+#' @return a vector with the index for NA data in the time series.
 
 Id.na <- function(x){
   ids.na <- which(is.na(as.numeric(x)) == TRUE)
@@ -26,9 +24,10 @@ Id.na <- function(x){
 
 #' Plot NA data in time series
 #'
-#' @param x the input time series as xts object
+#' @param x the input time series as xts object.
+#' @param ids.na the vector which coniains indexes for NA data as provided by the Id.na function.
 #'
-#' @return plots with the NAs highlighted
+#' @return plots with the NAs highlighted.
 
 plot.na <- function(x, ids.na){
   par(mfrow=c(5,2))
@@ -48,9 +47,9 @@ plot.na <- function(x, ids.na){
 
 #' Fill NA data in time series
 #'
-#' @param x the input time series as xts object
+#' @param x the input time series as xts object.
 #'
-#' @return a time series with the NAs replaced by data according to the na.locf zoo function
+#' @return a time series with the NAs replaced by data according to the na.locf zoo function.
 #'
 #' @importFrom zoo na.locf
 

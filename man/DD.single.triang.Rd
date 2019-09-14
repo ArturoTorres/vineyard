@@ -7,16 +7,16 @@
 DD.single.triang(t.zero, t.min, t.mean, t.max)
 }
 \arguments{
-\item{t.zero}{threshold temperature for vine growth}
+\item{t.zero}{threshold temperature for vine growth.}
 
-\item{t.min}{daily minimum air temperature}
+\item{t.min}{daily minimum air temperature.}
 
-\item{t.max}{daily maximum air temperature}
+\item{t.max}{daily maximum air temperature.}
 
-\item{x}{xts object containing the input data}
+\item{x}{xts object containing the input data.}
 }
 \value{
-a vector with the degree-days for vine growth
+a vector with the degree-days for vine growth.
 }
 \description{
 Compute the degree-days by the single triangle algorithm

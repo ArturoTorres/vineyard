@@ -7,14 +7,10 @@
 Raw2xts(data)
 }
 \arguments{
-\item{t.min}{daily minimum air temperature}
-
-\item{t.max}{daily maximum air temperature}
-
-\item{t.zero}{threshold temperature for vine growth}
+\item{data}{the dataframe to convert to xts time series.}
 }
 \value{
-a vector with the degree-days for vine growth
+the xts object for the input dataframe.
 }
 \description{
 Raw data to xts object
