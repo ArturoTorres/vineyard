@@ -9,15 +9,14 @@
 #'
 #' @importFrom xts xts
 
-DD.single.triang <- function(t.zero, t.min, t.max){
+DD.single.triang <- function(t.zero, t.min, t.mean, t.max){
   if(t.zero >= t.max){
     dd <- 0
-  } else if(t.zero > t.min && t.zero < t.max){
+  } else if((t.zero > t.min) && (t.zero < t.max)){
     dd <- ((t.max - t.zero)/2)*((t.max - t.zero)/(t.max - t.min))
   }else if(t.zero <= t.min){
-    dd <- t.max - t.zero
+    dd <- t.mean - t.zero
   }
-
   return(dd)
 }
 

@@ -1,11 +1,16 @@
 Package: vineyard
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Budburst, Phenological and Yield Models for Vineyards
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: D. Molitor [aut]
+    J. Junk [aut]
+    M. Sulis [aut]
+    J. A. Torres-Matallana [cre, aut]
+    S. Bhattacharya [ctb]
+    U. Leopold [ctb]
+    Luxembourg Institute of Science and Technology (LIST) [cph]
+Maintainer: J. A. Torres-Matallana <arturo.torres@list.lu>
+Description: Models for budburst, phenology and yield of vineyards.
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
