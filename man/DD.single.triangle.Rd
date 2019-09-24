@@ -2,7 +2,7 @@
 % Please edit documentation in R/BudBurst.R
 \name{DD.single.triangle}
 \alias{DD.single.triangle}
-\title{Compute the degree-days by the single triangle algorithm}
+\title{Degree days by the single triangle algorithm for bud break}
 \usage{
 DD.single.triangle(t.zero, t.min, t.mean, t.max)
 }
@@ -17,7 +17,7 @@ DD.single.triangle(t.zero, t.min, t.mean, t.max)
 a vector with the degree-days (in Celsius degrees) for vine growth.
 }
 \description{
-Implementation to compute the degree-days by the single triangle algorithm by Nendel (2010).
+Implementation to compute the degree days by the single triangle algorithm by Nendel (2010) for bud break.
 }
 \references{
 Nendel, Class (2010). Grapevine bud break prediction for cool winter climates. Int. J. Biometeorol., 54, 231–241.

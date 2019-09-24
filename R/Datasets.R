@@ -9,3 +9,18 @@
 #' @references \url{https://agriculture.public.lu/de/weinbau-oenologie.html}
 #' @keywords data
 NULL
+
+
+#' Cumulative degree days and growth stages
+#'
+#' A sample dataset containing the cumulative degree days (CDD) with optimized lower,
+#' upper, and heat threshold triplets (5, 20, 22°C) per growth stages
+#' according to Table 4 from Molitor et al. (2014).
+#'
+#' @name GrowthStage_CDD
+#' @docType data
+#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
+#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
+#' Am. J. Enol. Vitic., (65:1):72–80, 2014.
+#' @keywords data
+NULL

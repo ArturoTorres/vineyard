@@ -1,6 +1,6 @@
-#' Compute the degree-days by the single triangle algorithm
+#' Degree days by the single triangle algorithm for bud break
 #'
-#' Implementation to compute the degree-days by the single triangle algorithm by Nendel (2010).
+#' Implementation to compute the degree days by the single triangle algorithm by Nendel (2010) for bud break.
 #'
 #' @param t.min daily minimum air temperature vector in Celsius degrees.
 #' @param t.max daily maximum air temperature vector in Celsius degrees.
@@ -20,89 +20,72 @@ DD.single.triangle <- function(t.zero, t.min, t.mean, t.max){
   }else if(t.zero <= t.min){
     dd <- t.mean - t.zero
   }
+
   return(dd)
 }
 
-
-#' Compute the degree-days by the single temperature threshold
+#' Cumulative degree days (CDD) by the single triangle algorithm
 #'
-#' Implementation to compute the degree-days by the single temperature threshold by Molitor et al., (2014).
+#' Implementation to compute the cumulative degree days by the single triangle algorithm by Nendel (2010).
 #'
-#' @param t.mean daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, threshold temperature (in Celsius degrees) for vine growth.
+#' @param data input data in xts format.
+#' @param t.zero numeric, threshold temperature (in Celsius degrees) for vine growth.
+#' @param t.min.col numeric, column position in data for the daily minimum air temperature vector in Celsius degrees.
+#' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
+#' @param t.max.col numeric, column position in data for the daily maximum air temperature vector in Celsius degrees.
+#' @param start.date numeric, calculated optimum starting date in day of year.
 #'
-#' @return a vector with the degree-days (in Celsius degrees) for vine growth.
+#' @return list per year for the input data plus an additional column with the cumulative degree days
+#' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
 #' @importFrom xts xts
 #'
-#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
-#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
-#' Am. J. Enol. Vitic., (65:1):72–80, 2014.
+#' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
+#' Int. J. Biometeorol., 54, 231–241.
 
-DD.single.threshold <- function(t.mean, a){
-  if(t.mean < a){
-    dd <- 0
-  } else if(a < t.mean){
-    dd <- (t.mean - a)
+DD.single.triangle.cumulative <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
+  gdd <- lapply(data, function(x) {apply(X = coredata(x), MARGIN = 1, FUN = function(y){
+    dd <- DD.single.triangle(t.zero = t.zero, t.min = as.numeric(y[t.min.col]),
+                             t.mean = as.numeric(y[t.mean.col]),
+                             t.max = as.numeric(y[t.max.col]))
+  })
   }
-  return(dd)
+  )
+
+  cdd <- mapply(FUN = function(x, gdd) as.xts(cbind(x, cumsum(gdd))), x = data, gdd = gdd )
+
+  return(cdd)
 }
 
 
-#' Compute the degree-days by the lower and upper temperature thresholds
+#' Cumulative degree days (CDD) by the single triangle algorithm for bud break
 #'
-#' Implementation to compute the degree-days by the lower and upper temperature thresholds by Molitor et al., (2014).
+#' Implementation to compute the cumulative degree days by the single triangle algorithm by Nendel (2010)
+#' for bud break.
 #'
-#' @param t.mean daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, lower threshold temperature (in Celsius degrees) for vine growth.
-#' @param b numeric, upper threshold temperature (in Celsius degrees) for vine growth.
+#' @param cdd cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
+#' "DD.single.triangle.cumulative" function.
+#' @param start.date numeric, calculated optimum starting date in day of year.
 #'
-#' @return a vector with the degree-days (in Celsius degrees) for vine growth.
+#' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
+#' the comulative degree days (in Celsius degrees) for bud break.
 #'
 #' @importFrom xts xts
 #'
-#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
-#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
-#' Am. J. Enol. Vitic., (65:1):72–80, 2014.
+#' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
+#' Int. J. Biometeorol., 54, 231–241.
 
-DD.double.threshold <- function(t.mean, a, b){
-  if(t.mean < a){
-    dd <- 0
-  } else if((a < t.mean) && (t.mean < b)){
-    dd <- (t.mean - a)
-  } else if(b < t.mean){
-    dd <- (b - a)
-  }
-  return(dd)
+DD.single.triangle.budbreak <- function(cdd, start.date){
+  idx <- lapply(cdd, FUN = function(x){
+    idx <- index(x)[start.date]
+    idx.subset <- paste0(idx,"/")
+    subset <- x[idx.subset]
+
+    cdd.bb <- coredata(subset[,9]) - rep(coredata(subset[1,9]), nrow(subset)) # TO DO:make index 9 generic
+    subset[,9] <- cdd.bb # TO DO:make index 9 generic
+    colnames(subset[,9]) <- "cdd.bb" # TO DO:make index 9 generic
+
+    return(subset)
+    })
 }
 
-
-#' Compute the degree-days by a heat threshold temperature
-#'
-#' Implementation to compute the degree-days by a heat threshold temperature by Molitor et al., (2014).
-#'
-#' @param t.mean daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, lower threshold temperature (in Celsius degrees) for vine growth.
-#' @param b numeric, upper threshold temperature (in Celsius degrees) for vine growth.
-#' @param c numeric, heat threshold temperature (in Celsius degrees) for vine growth.
-#'
-#' @return a vector with the degree-days (in Celsius degrees) for vine growth.
-#'
-#' @importFrom xts xts
-#'
-#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
-#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
-#' Am. J. Enol. Vitic., (65:1):72–80, 2014.
-
-DD.heat.threshold <- function(t.mean, a, b, c){
-  if((t.mean < a) || (c + (b - a) < t.mean)){
-    dd <- 0
-  } else if((a < t.mean) && (t.mean < b)){
-    dd <- (t.mean - a)
-  } else if(b < t.mean){
-    dd <- (b - a)
-  } else if(c < t.mean) {
-    dd <- (b - a) - (t.mean - c)
-  }
-  return(dd)
-}
