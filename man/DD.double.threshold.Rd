@@ -2,7 +2,7 @@
 % Please edit documentation in R/Phenology.R
 \name{DD.double.threshold}
 \alias{DD.double.threshold}
-\title{Compute the degree days by the lower and upper temperature thresholds}
+\title{Compute the degree days by the double (lower and upper) temperature thresholds}
 \usage{
 DD.double.threshold(t.mean, a, b)
 }
@@ -17,7 +17,7 @@ DD.double.threshold(t.mean, a, b)
 a vector with the degree days (in Celsius degrees) for vine growth.
 }
 \description{
-Implementation to compute the degree days by the lower and upper temperature thresholds by Molitor et al., (2014).
+Implementation to compute the degree days by the double (lower and upper) temperature thresholds by Molitor et al., (2014).
 }
 \references{
 Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).

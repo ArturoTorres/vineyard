@@ -52,7 +52,7 @@ DD.single.triangle.cumulative <- function(data, t.zero, t.min.col, t.mean.col, t
   }
   )
 
-  cdd <- mapply(FUN = function(x, gdd) as.xts(cbind(x, cumsum(gdd))), x = data, gdd = gdd )
+  cdd <- mapply(FUN = function(x, gdd) as.xts(cbind(x, cumsum(gdd))), x = data, gdd = gdd)
 
   return(cdd)
 }
