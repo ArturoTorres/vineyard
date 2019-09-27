@@ -6,7 +6,7 @@
 #'
 #' @importFrom xts xts
 
-Raw2xts <- function(data){
+raw2xts <- function(data){
   time <- paste(data$Jahr, data$Monat, data$Tag, sep = "-")
   time <- xts(x = data, order.by = as.POSIXct(time, format = "%Y-%m-%d"))
 }
@@ -18,14 +18,14 @@ Raw2xts <- function(data){
 #'
 #' @return a vector with the index for NA data in the time series.
 
-Id.na <- function(x){
+id.na <- function(x){
   ids.na <- which(is.na(as.numeric(x)) == TRUE)
 }
 
 #' Plot NA data in time series
 #'
 #' @param x the input time series as xts object.
-#' @param ids.na the vector which coniains indexes for NA data as provided by the Id.na function.
+#' @param ids.na the vector which contains indexes for NA data as provided by the Id.na function.
 #'
 #' @return plots with the NAs highlighted.
 
@@ -54,7 +54,7 @@ plot.na <- function(x, ids.na){
 #' @importFrom zoo na.locf
 
 
-FillNA <- function(x){
+fill.na <- function(x){
   x.full <- na.approx(x)
 }
 

@@ -1,9 +1,9 @@
-#' Compute degree days by the single temperature threshold
+#' Compute degree days by the single (lower) temperature threshold
 #'
-#' Implementation to compute degree days by the single temperature threshold by Molitor et al., (2014).
+#' Implementation to compute degree days by the single (lower) temperature threshold by Molitor et al., (2014).
 #'
 #' @param t.mean daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, threshold temperature (in Celsius degrees) for vine growth.
+#' @param a numeric, single (lower) threshold temperature (in Celsius degrees) for vine growth.
 #'
 #' @return a vector with the degree days.
 #'
@@ -13,7 +13,7 @@
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.single.threshold <- function(t.mean, a){
+dd.lThresh <- function(t.mean, a){
   if(t.mean <= a){
     dd <- 0
   } else if(a < t.mean){
@@ -22,9 +22,9 @@ DD.single.threshold <- function(t.mean, a){
   return(dd)
 }
 
-#' Compute the cumulative degree days by the single temperature threshold
+#' Compute the cumulative degree days by the single (lower) temperature threshold
 #'
-#' Implementation to compute the cumulative degree days by the single temperature threshold by Molitor et al., (2014).
+#' Implementation to compute the cumulative degree days by the single (lower) temperature threshold by Molitor et al., (2014).
 #'
 #' @param data input data in xts format.
 #' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
@@ -39,26 +39,26 @@ DD.single.threshold <- function(t.mean, a){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.single.cumulative <- function(data, t.mean.col, a){
+cdd.lThresh <- function(data, t.mean.col, a){
   dd.stt <- lapply(data, function(x) {apply(X = coredata(x), MARGIN = 1, FUN = function(y){
-    dd <- DD.single.threshold(t.mean = as.numeric(y[t.mean.col]), a = a)
+    dd <- dd.lThresh(t.mean = as.numeric(y[t.mean.col]), a = a)
   })
   }
   )
 
-  cdd.stt <- mapply(FUN = function(x, cdd.stt) as.xts(cbind(x, cdd_stt = cumsum(cdd.stt))),
+  cdd.stt <- mapply(FUN = function(x, cdd.stt) as.xts(cbind(x, cdd_lt = cumsum(cdd.stt))),
                     x = data, cdd.stt = dd.stt )
 
   return(cdd.stt)
 }
 
-#' Cumulative degree days (CDD) by the single threshold algorithm for phenology
+#' Cumulative degree days (cdd) by the single (lower) threshold algorithm for phenology
 #'
-#' Implementation to compute the cumulative degree days by the single threshold algorithm by
-#' Molitor et al. (2010) for phenology.
+#' Implementation to compute the cumulative degree days (cdd) by the single (lower) threshold algorithm by
+#' Molitor et al. (2014) for phenology.
 #'
-#' @param cdd.stt cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-#' "DD.single.treshold.cumulative" function.
+#' @param cdd.lt list, cumulative degree days (in Celsius degrees) for vine growth in xts format per year
+#' as provided by "cdd.1Treshold" function.
 #' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
 #'
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
@@ -70,18 +70,18 @@ DD.single.cumulative <- function(data, t.mean.col, a){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.single.phenology <- function(cdd.stt, chs.mean){
-  idx <- lapply(cdd.stt, FUN = function(x){
-    idx <- which(x$cdd_stt <= chs.mean)
+cdd.lThresh.phenology <- function(cdd.lt, chs.mean){
+  idx <- lapply(cdd.lt, FUN = function(x){
+    idx <- which(x$cdd_lt <= chs.mean)
     idx <- idx[length(idx)] + 1
     idx <- index(x[idx,])
 
     idx.subset <- paste0(idx,"/")
     subset <- x[idx.subset]
 
-    cdd.phen <- coredata(subset$cdd_stt) - rep(coredata(subset$cdd_stt[1]), nrow(subset))
-    subset$cdd_stt <- cdd.phen
-    colnames(subset$cdd_stt) <- "cdd_phenology"
+    cdd.phen <- coredata(subset$cdd_lt) - rep(coredata(subset$cdd_lt[1]), nrow(subset))
+    subset$cdd_lt <- cdd.phen
+    colnames(subset$cdd_lt) <- "cdd_phenology"
 
     return(subset)
   })
@@ -91,7 +91,7 @@ DD.single.phenology <- function(cdd.stt, chs.mean){
 #'
 #' Implementation to compute the degree days by the double (lower and upper) temperature thresholds by Molitor et al., (2014).
 #'
-#' @param t.mean daily mean air temperature vector in Celsius degrees.
+#' @param t.mean vector, daily mean air temperature in Celsius degrees.
 #' @param a numeric, lower threshold temperature (in Celsius degrees) for vine growth.
 #' @param b numeric, upper threshold temperature (in Celsius degrees) for vine growth.
 #'
@@ -103,7 +103,7 @@ DD.single.phenology <- function(cdd.stt, chs.mean){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.double.threshold <- function(t.mean, a, b){
+dd.luThresh <- function(t.mean, a, b){
   if(t.mean <= a){
     dd <- 0
   } else if((a < t.mean) && (t.mean <= b)){
@@ -120,7 +120,7 @@ DD.double.threshold <- function(t.mean, a, b){
 #'
 #' @param data input data in xts format.
 #' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, threshold temperature (in Celsius degrees) for vine growth.
+#' @param a numeric, lower threshold temperature (in Celsius degrees) for vine growth.
 #' @param b numeric, upper threshold temperature (in Celsius degrees) for vine growth.
 #'
 #' @return list per year for the input data plus an additional column with the cumulative degree days
@@ -132,27 +132,27 @@ DD.double.threshold <- function(t.mean, a, b){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.double.cumulative <- function(data, t.mean.col, a, b){
+cdd.luThresh <- function(data, t.mean.col, a, b){
   dd.dtt <- lapply(data, function(x) {apply(X = coredata(x), MARGIN = 1, FUN = function(y){
-    dd <- DD.double.threshold(t.mean = as.numeric(y[t.mean.col]), a = a, b = b)
+    dd <- dd.luThresh(t.mean = as.numeric(y[t.mean.col]), a = a, b = b)
   })
   }
   )
 
-  cdd.dtt <- mapply(FUN = function(x, cdd.dtt) as.xts(cbind(x, cdd_dtt = cumsum(cdd.dtt))),
+  cdd.dtt <- mapply(FUN = function(x, cdd.dtt) as.xts(cbind(x, cdd_lut = cumsum(cdd.dtt))),
                     x = data, cdd.dtt = dd.dtt)
 
   return(cdd.dtt)
 }
 
 
-#' Cumulative degree days (CDD) by the double (lower and upper) threshold algorithm for phenology
+#' Cumulative degree days (CDD) by the double (lower and upper) threshold temperatures for phenology
 #'
-#' Implementation to compute the cumulative degree days by the double (lower and upper) threshold algorithm by
-#' Molitor et al. (2010) for phenology.
+#' Implementation to compute the cumulative degree days by the double (lower and upper) threshold temperatures by
+#' Molitor et al. (2014) for phenology.
 #'
-#' @param cdd.dtt cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-#' "DD.double.treshold.cumulative" function.
+#' @param cdd.lut list, cumulative degree days (in Celsius degrees) for vine growth in xts format per year
+#' as provided by the double threshold temperature ("cdd.double.threshold" function).
 #' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
 #'
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
@@ -164,18 +164,18 @@ DD.double.cumulative <- function(data, t.mean.col, a, b){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.double.phenology <- function(cdd.dtt, chs.mean){
-  idx <- lapply(cdd.dtt, FUN = function(x){
-    idx <- which(x$cdd_dtt <= chs.mean)
+cdd.luThresh.phenology <- function(cdd.lut, chs.mean){
+  idx <- lapply(cdd.lut, FUN = function(x){
+    idx <- which(x$cdd_lut <= chs.mean)
     idx <- idx[length(idx)] + 1
     idx <- index(x[idx,])
 
     idx.subset <- paste0(idx,"/")
     subset <- x[idx.subset]
 
-    cdd.phen <- coredata(subset$cdd_dtt) - rep(coredata(subset$cdd_dtt[1]), nrow(subset))
-    subset$cdd_dtt <- cdd.phen
-    colnames(subset$cdd_dtt) <- "cdd_phenology"
+    cdd.phen <- coredata(subset$cdd_lut) - rep(coredata(subset$cdd_lut[1]), nrow(subset))
+    subset$cdd_lut <- cdd.phen
+    colnames(subset$cdd_lut) <- "cdd_phenology"
 
     return(subset)
   })
@@ -200,7 +200,7 @@ DD.double.phenology <- function(cdd.dtt, chs.mean){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.LUH.threshold <- function(t.mean, a, b, c){
+dd.luhThresh <- function(t.mean, a, b, c){
   if((t.mean <= a) || (c + (b - a) < t.mean)){
     dd <- 0
   } else if((a < t.mean) && (t.mean < b)){
@@ -214,14 +214,14 @@ DD.LUH.threshold <- function(t.mean, a, b, c){
 }
 
 
-#' Compute cumulative degree days by the lower, upper and heat temperature thresholds
+#' Compute cumulative degree days by the lower, upper and heat threshold temperatures
 #'
-#' Implementation to compute cumulative degree days by the lower, upper and heat temperature threshold
+#' Implementation to compute cumulative degree days by the lower, upper and heat threshold temperatures
 #' by Molitor et al., (2014).
 #'
 #' @param data input data in xts format.
 #' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
-#' @param a numeric, threshold temperature (in Celsius degrees) for vine growth.
+#' @param a numeric, lower threshold temperature (in Celsius degrees) for vine growth.
 #' @param b numeric, upper threshold temperature (in Celsius degrees) for vine growth.
 #' @param c numeric, heat threshold temperature (in Celsius degrees) for vine growth.
 #'
@@ -234,26 +234,26 @@ DD.LUH.threshold <- function(t.mean, a, b, c){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.LUH.cumulative <- function(data, t.mean.col, a, b, c){
+cdd.luhThresh <- function(data, t.mean.col, a, b, c){
   dd.LUHtt <- lapply(data, function(x) {apply(X = coredata(x), MARGIN = 1, FUN = function(y){
-    dd <- DD.LUH.threshold(t.mean = as.numeric(y[t.mean.col]), a = a, b = b, c = c)
+    dd <- dd.luhThresh(t.mean = as.numeric(y[t.mean.col]), a = a, b = b, c = c)
   })
   }
   )
 
-  cdd.LUHtt <- mapply(FUN = function(x, cdd.LUHtt) as.xts(cbind(x, cdd_LUHtt = cumsum(cdd.LUHtt))),
+  cdd.LUHtt <- mapply(FUN = function(x, cdd.LUHtt) as.xts(cbind(x, cdd_luht = cumsum(cdd.LUHtt))),
                     x = data, cdd.LUHtt = dd.LUHtt)
 
   return(cdd.LUHtt)
 }
 
 
-#' Cumulative degree days (CDD) by the lower, upper and heat thresholds algorithm for phenology
+#' Cumulative degree days (CDD) by the lower, upper and heat threshold temperatures for phenology
 #'
-#' Implementation to compute the cumulative degree days by the lower, upper and heat threshold algorithm by
-#' Molitor et al. (2010) for phenology.
+#' Implementation to compute the cumulative degree days by the lower, upper and heat threshold temperatures by
+#' Molitor et al. (2014) for phenology.
 #'
-#' @param cdd.LUHtt cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
+#' @param cdd.luht cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
 #' "DD.LUH.cumulative" function.
 #' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
 #'
@@ -266,18 +266,18 @@ DD.LUH.cumulative <- function(data, t.mean.col, a, b, c){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-DD.LUH.phenology <- function(cdd.LUHtt, chs.mean){
-  idx <- lapply(cdd.LUHtt, FUN = function(x){
-    idx <- which(x$cdd_LUHtt <= chs.mean)
+cdd.luhThresh.phenology <- function(cdd.luht, chs.mean){
+  idx <- lapply(cdd.luht, FUN = function(x){
+    idx <- which(x$cdd_luht <= chs.mean)
     idx <- idx[length(idx)] + 1
     idx <- index(x[idx,])
 
     idx.subset <- paste0(idx,"/")
     subset <- x[idx.subset]
 
-    cdd.phen <- coredata(subset$cdd_LUHtt) - rep(coredata(subset$cdd_LUHtt[1]), nrow(subset))
-    subset$cdd_LUHtt <- cdd.phen
-    colnames(subset$cdd_LUHtt) <- "cdd_phenology"
+    cdd.phen <- coredata(subset$cdd_luht) - rep(coredata(subset$cdd_luht[1]), nrow(subset))
+    subset$cdd_luht <- cdd.phen
+    colnames(subset$cdd_luht) <- "cdd_phenology"
 
     return(subset)
   })
@@ -289,10 +289,12 @@ DD.LUH.phenology <- function(cdd.LUHtt, chs.mean){
 #' Implementation to compute phenological stages by Molitor et al., (2014).
 #'
 #' @param cdd.phen list, cumulative degree days (in Celsius degrees) for vine growth in xts format as
-#' provided by e.g. "DD.single.treshold.phenology" function.
+#' provided by any of the functions "cdd.1Tresh.phenology" or "cdd.2Tresh.phenology" or  "cdd.3Tresh.phenology".
 #' @param ref.data data.frame, reference dataset to define the phenological stages e.g. "GowthStage_CDD"
 #' dataset.
-#' @param stage vector, growth stage(s) for which the phenology should be computed.
+#' @param stage vector, growth stage(s) for which the phenology should be computed. One or more out of
+#' the 27 stages that range from 11 (First leaf unfolded and spread away from shoot) to
+#' 89 (Berries ripe for harvest) according to Molitor et al. (2014).
 #'
 #' @return list per year, with each list containing a data.frame with the phenological stages
 #' for vine growth.
@@ -303,7 +305,7 @@ DD.LUH.phenology <- function(cdd.LUHtt, chs.mean){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-Phenology.stages <- function(cdd.phen, ref.data, stage){
+phenology.stages <- function(cdd.phen, ref.data, stage){
   lapply(X = cdd.phen, FUN = function(w){
     id      <- which(ref.data[1] == stage)
     ref.cdd <- ref.data[id, "CDD"]

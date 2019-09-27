@@ -1,6 +1,6 @@
-#' Degree days by the single triangle algorithm for bud break
+#' Degree days by the single triangle algorithm
 #'
-#' Implementation to compute the degree days by the single triangle algorithm by Nendel (2010) for bud break.
+#' Implementation to compute the degree days by the single triangle algorithm by Nendel (2010).
 #'
 #' @param t.min daily minimum air temperature vector in Celsius degrees.
 #' @param t.max daily maximum air temperature vector in Celsius degrees.
@@ -12,7 +12,7 @@
 #'
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates. Int. J. Biometeorol., 54, 231–241.
 
-DD.single.triangle <- function(t.zero, t.min, t.mean, t.max){
+dd.single.triangle <- function(t.zero, t.min, t.mean, t.max){
   if(t.zero >= t.max){
     dd <- 0
   } else if((t.zero > t.min) && (t.zero < t.max)){
@@ -43,9 +43,9 @@ DD.single.triangle <- function(t.zero, t.min, t.mean, t.max){
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
 #' Int. J. Biometeorol., 54, 231–241.
 
-DD.single.triangle.cumulative <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
+cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
   gdd <- lapply(data, function(x) {apply(X = coredata(x), MARGIN = 1, FUN = function(y){
-    dd <- DD.single.triangle(t.zero = t.zero, t.min = as.numeric(y[t.min.col]),
+    dd <- dd.single.triangle(t.zero = t.zero, t.min = as.numeric(y[t.min.col]),
                              t.mean = as.numeric(y[t.mean.col]),
                              t.max = as.numeric(y[t.max.col]))
   })
@@ -75,7 +75,7 @@ DD.single.triangle.cumulative <- function(data, t.zero, t.min.col, t.mean.col, t
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
 #' Int. J. Biometeorol., 54, 231–241.
 
-DD.single.triangle.budbreak <- function(cdd, start.date){
+cdd.single.triangle.budbreak <- function(cdd, start.date){
   idx <- lapply(cdd, FUN = function(x){
     idx <- index(x)[start.date]
     idx.subset <- paste0(idx,"/")
