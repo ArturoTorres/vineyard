@@ -4,7 +4,7 @@
 \alias{plot.na}
 \title{Plot NA data in time series}
 \usage{
-\method{plot}{na}(x, ids.na)
+plot.na(x, ids.na)
 }
 \arguments{
 \item{x}{the input time series as xts object.}

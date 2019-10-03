@@ -52,7 +52,7 @@ cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
   }
   )
 
-  cdd <- mapply(FUN = function(x, gdd) as.xts(cbind(x, cumsum(gdd))), x = data, gdd = gdd)
+  cdd <- mapply(FUN = function(x, gdd) as.xts(cbind(x, cdd_st=cumsum(gdd))), x = data, gdd = gdd)
 
   return(cdd)
 }
@@ -81,9 +81,9 @@ cdd.single.triangle.budbreak <- function(cdd, start.date){
     idx.subset <- paste0(idx,"/")
     subset <- x[idx.subset]
 
-    cdd.bb <- coredata(subset[,9]) - rep(coredata(subset[1,9]), nrow(subset)) # TO DO:make index 9 generic
-    subset[,9] <- cdd.bb # TO DO:make index 9 generic
-    colnames(subset[,9]) <- "cdd.bb" # TO DO:make index 9 generic
+    cdd.bb <- as.numeric(coredata(subset[,"cdd_st"])) - rep(as.numeric(coredata(subset[1,"cdd_st"])), nrow(subset))
+    subset[,"cdd_st"] <- cdd.bb
+    colnames(subset[,"cdd_st"]) <- "cdd.bb"
 
     return(subset)
     })

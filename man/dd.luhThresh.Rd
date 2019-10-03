@@ -2,7 +2,7 @@
 % Please edit documentation in R/Phenology.R
 \name{dd.luhThresh}
 \alias{dd.luhThresh}
-\title{Compute the degree days by a lower, upper and heat threshold temperatures}
+\title{Compute the degree days by a lower, upper and heat temperature thresholds}
 \usage{
 dd.luhThresh(t.mean, a, b, c)
 }
@@ -19,7 +19,7 @@ dd.luhThresh(t.mean, a, b, c)
 a vector with the degree days (in Celsius degrees) for vine growth.
 }
 \description{
-Implementation to compute the degree days by a lower, upper and heat threshold temperatures
+Implementation to compute the degree days by a lower, upper and heat temperature thresholds
 by Molitor et al., (2014).
 }
 \references{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/Phenology.R
 \name{cdd.luhThresh}
 \alias{cdd.luhThresh}
-\title{Compute cumulative degree days by the lower, upper and heat threshold temperatures}
+\title{Compute cumulative degree days by the lower, upper and heat temperature thresholds}
 \usage{
 cdd.luhThresh(data, t.mean.col, a, b, c)
 }
@@ -22,7 +22,7 @@ list per year for the input data plus an additional column with the cumulative d
 (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 }
 \description{
-Implementation to compute cumulative degree days by the lower, upper and heat threshold temperatures
+Implementation to compute cumulative degree days by the lower, upper and heat temperature thresholds
 by Molitor et al., (2014).
 }
 \references{

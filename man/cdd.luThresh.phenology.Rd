@@ -2,7 +2,7 @@
 % Please edit documentation in R/Phenology.R
 \name{cdd.luThresh.phenology}
 \alias{cdd.luThresh.phenology}
-\title{Cumulative degree days (CDD) by the double (lower and upper) threshold temperatures for phenology}
+\title{Cumulative degree days (CDD) by the double (lower and upper) temperature thresholds for phenology}
 \usage{
 cdd.luThresh.phenology(cdd.lut, chs.mean)
 }
@@ -17,7 +17,7 @@ the cumulative degree days (in Celsius degrees) for vine growth plus an addition
 the cumulative degree days (in Celsius degrees) for phenology.
 }
 \description{
-Implementation to compute the cumulative degree days by the double (lower and upper) threshold temperatures by
+Implementation to compute the cumulative degree days by the double (lower and upper) temperature thresholds by
 Molitor et al. (2014) for phenology.
 }
 \references{
