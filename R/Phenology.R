@@ -9,6 +9,8 @@
 #'
 #' @importFrom xts xts
 #'
+#' @export dd.lThresh
+#'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
@@ -34,6 +36,8 @@ dd.lThresh <- function(t.mean, a){
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.lThresh
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
@@ -65,6 +69,8 @@ cdd.lThresh <- function(data, t.mean.col, a){
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.lThresh.phenology
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
@@ -99,6 +105,8 @@ cdd.lThresh.phenology <- function(cdd.lt, chs.mean){
 #'
 #' @importFrom xts xts
 #'
+#' @export dd.luThresh
+#'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
@@ -127,6 +135,8 @@ dd.luThresh <- function(t.mean, a, b){
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.luThresh
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
@@ -159,6 +169,8 @@ cdd.luThresh <- function(data, t.mean.col, a, b){
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.luThresh.phenology
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
@@ -196,6 +208,8 @@ cdd.luThresh.phenology <- function(cdd.lut, chs.mean){
 #'
 #' @importFrom xts xts
 #'
+#' @export dd.luhThresh
+#'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
@@ -230,6 +244,8 @@ dd.luhThresh <- function(t.mean, a, b, c){
 #'
 #' @importFrom xts xts
 #'
+#' @export cdd.luhThresh
+#'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
@@ -261,6 +277,8 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.luhThresh.phenology
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
@@ -300,6 +318,8 @@ cdd.luhThresh.phenology <- function(cdd.luht, chs.mean){
 #' for vine growth.
 #'
 #' @importFrom xts xts
+#'
+#' @export phenology.stages
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.

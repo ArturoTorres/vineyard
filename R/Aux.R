@@ -1,13 +1,18 @@
 #' Raw data to xts object
 #'
 #' @param data the dataframe to convert to xts time series.
+#' @param year.name the column name for the variable year.
+#' @param month.name the column name for the variable month.
+#' @param day.name the column name for the variable day.
 #'
 #' @return the xts object for the input dataframe.
 #'
 #' @importFrom xts xts
+#'
+#' @export raw2xts
 
-raw2xts <- function(data){
-  time <- paste(data$Jahr, data$Monat, data$Tag, sep = "-")
+raw2xts <- function(data, year.name, month.name, day.name){
+  time <- paste(data[, year.name], data[,month.name], data[,day.name], sep = "-")
   time <- xts(x = data, order.by = as.POSIXct(time, format = "%Y-%m-%d"))
 }
 
@@ -17,6 +22,8 @@ raw2xts <- function(data){
 #' @param x the input time series as xts object.
 #'
 #' @return a vector with the index for NA data in the time series.
+#'
+#' @export id.na
 
 id.na <- function(x){
   ids.na <- which(is.na(as.numeric(x)) == TRUE)
@@ -28,6 +35,8 @@ id.na <- function(x){
 #' @param ids.na the vector which contains indexes for NA data as provided by the Id.na function.
 #'
 #' @return plots with the NAs highlighted.
+#'
+#' @export plot.na
 
 plot.na <- function(x, ids.na){
   par(mfrow=c(5,2))
@@ -52,9 +61,10 @@ plot.na <- function(x, ids.na){
 #' @return a time series with the NAs replaced by data according to the na.locf zoo function.
 #'
 #' @importFrom zoo na.locf
+#'
+#' @export fill.na
 
 
 fill.na <- function(x){
   x.full <- na.approx(x)
 }
-

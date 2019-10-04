@@ -4,10 +4,16 @@
 \alias{raw2xts}
 \title{Raw data to xts object}
 \usage{
-raw2xts(data)
+raw2xts(data, year.name, month.name, day.name)
 }
 \arguments{
 \item{data}{the dataframe to convert to xts time series.}
+
+\item{year.name}{the column name for the variable year.}
+
+\item{month.name}{the column name for the variable month.}
+
+\item{day.name}{the column name for the variable day.}
 }
 \value{
 the xts object for the input dataframe.

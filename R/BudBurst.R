@@ -10,6 +10,8 @@
 #'
 #' @importFrom xts xts
 #'
+#' @export dd.single.triangle
+#'
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates. Int. J. Biometeorol., 54, 231–241.
 
 dd.single.triangle <- function(t.zero, t.min, t.mean, t.max){
@@ -39,6 +41,8 @@ dd.single.triangle <- function(t.zero, t.min, t.mean, t.max){
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.single.triangle
 #'
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
 #' Int. J. Biometeorol., 54, 231–241.
@@ -71,6 +75,8 @@ cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
 #' the comulative degree days (in Celsius degrees) for bud break.
 #'
 #' @importFrom xts xts
+#'
+#' @export cdd.single.triangle.budbreak
 #'
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
 #' Int. J. Biometeorol., 54, 231–241.
