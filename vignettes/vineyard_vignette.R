@@ -1,21 +1,10 @@
----
-title: "Bud break and phenology models for grapevine cultivars"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Bud break and phenology models for grapevine cultivars}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-## Setup
-```{r, include = FALSE}
+## ---- include = FALSE----------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-```{r setup}
+## ----setup---------------------------------------------------------------
 library(vineyard)
 
 library(knitr)
@@ -25,16 +14,12 @@ library(rgdal)
 library(spacetime)
 
 timing.ini <- Sys.time()
-```
 
-## Load dataset
-```{r load_dataset}
+## ----load_dataset--------------------------------------------------------
 data(data_remich)
 str(data_remich)
-```
 
-## Splitting data by years
-```{r split_years}
+## ----split_years---------------------------------------------------------
 # cohercing to data.frame
 data.remich <- as.data.frame(data_remich)
 
@@ -43,10 +28,8 @@ data.remich <- xts(x = data.remich, order.by = data.remich$time)
 
 years <- factor(data.remich$Year)
 remich.years <- split(data.remich, years)
-```
 
-## Calculation of cumulative degree days (CDD) by the single triangle algorithm (Nelder, 2010) for bud break
-```{r degree_days}
+## ----degree_days---------------------------------------------------------
 head(remich.years[[1]])
 
 cdd <- cdd.single.triangle(data = remich.years, t.zero = 0, t.min.col = 16, t.mean.col = 17, t.max.col = 15)
@@ -54,19 +37,13 @@ head(cdd[[1]])
 
 cdd.bb <- cdd.single.triangle.budbreak(cdd = cdd, start.date = 59)
 head(cdd.bb[[1]])
-```
 
-
-## Calculation of degree-days by the single (lower) temperature threshold (Molitor et al., 2014)
-```{r degree_days_molitor1}
+## ----degree_days_molitor1------------------------------------------------
 cdd.lt <- cdd.lThresh(data = remich.years, t.mean.col = 17, a = 0)
 
 head(cdd.lt[[1]])
-```
 
-
-## Calculation of phenology by the single temperature threshold (Molitor et al., 2014)
-```{r phenology_molitor1}
+## ----phenology_molitor1--------------------------------------------------
 # mean cumulative heat sum for bud break of 438.7 degree celsius for
 # Mueller-Thurgau (Nelder, 2010)
 cdd.phen.mthurgau <- cdd.lThresh.phenology(cdd.lt = cdd.lt, chs.mean = 438.7)
@@ -91,17 +68,13 @@ phen.riesling <- phenology.stages(cdd.phen = cdd.phen.mthurgau, ref.data = Growt
                                       stage = GrowthStage_CDD[-1,1])
 phen.riesling[[1]]
 
-```
 
-## Calculation of degree-days by the double (lower and upper) temperature thresholds (Molitor et al., 2014)
-```{r degree_days_molitor2}
+## ----degree_days_molitor2------------------------------------------------
 cdd.lut <- cdd.luThresh(data = remich.years, t.mean.col = 17, a = 0, b = 15)
 
 head(cdd.lut[[1]])
-```
 
-## Calculation of phenology by the double (lower and upper) temperature thresholds (Molitor et al., 2014)
-```{r phenology_molitor2}
+## ----phenology_molitor2--------------------------------------------------
 # mean cumulative heat sum for bud break of 438.7 degree celsius for
 # Mueller-Thurgau (Nelder, 2010)
 cdd.phen.mthurgau.lut <- cdd.luThresh.phenology(cdd.lut = cdd.lut, chs.mean = 438.7)
@@ -121,17 +94,13 @@ phen.mthurgau.lut[[1]]
 phen.riesling.lut <- phenology.stages(cdd.phen = cdd.phen.mthurgau.lut, ref.data = GrowthStage_CDD[-1,],
                                   stage = GrowthStage_CDD[-1,1])
 phen.riesling.lut[[1]]
-```
 
-## Calculation of degree-days by a lower, upper and heat temperature thresholds (Molitor et al., 2014)
-```{r degree_days_molitor3}
+## ----degree_days_molitor3------------------------------------------------
 cdd.luht <- cdd.luhThresh(data = remich.years, t.mean.col = 17, a = 0, b = 15, c = 20)
 
 head(cdd.luht[[1]])
-```
 
-## Calculation of phenology by the lower, upper and heat temperature thresholds (Molitor et al., 2014)
-```{r phenology_molitor3}
+## ----phenology_molitor3--------------------------------------------------
 
 # mean cumulative heat sum for bud break of 438.7 degree celsius for
 # Mueller-Thurgau (Nelder, 2010)
@@ -152,15 +121,11 @@ phen.mthurgau.luht[[1]]
 phen.riesling.luht <- phenology.stages(cdd.phen = cdd.phen.mthurgau.luht, ref.data = GrowthStage_CDD[-1,],
                                       stage = GrowthStage_CDD[-1,1])
 phen.riesling.luht[[1]]
-```
 
-## Timing
-```{r timing}
+## ----timing--------------------------------------------------------------
 timing.end <- Sys.time()
 (timing.elapsed <- timing.end - timing.ini)
-```
 
-## Session information
-```{r session}
+## ----session-------------------------------------------------------------
 sessionInfo()
-```
+
