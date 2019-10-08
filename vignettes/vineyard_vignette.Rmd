@@ -17,11 +17,8 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(vineyard)
-
 library(knitr)
-library(roxygen2)
 library(xts)
-library(rgdal)
 library(spacetime)
 
 timing.ini <- Sys.time()

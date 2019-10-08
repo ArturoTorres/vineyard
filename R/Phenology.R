@@ -7,8 +7,6 @@
 #'
 #' @return a vector with the degree days.
 #'
-#' @importFrom xts xts
-#'
 #' @export dd.lThresh
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
@@ -35,7 +33,8 @@ dd.lThresh <- function(t.mean, a){
 #' @return list per year for the input data plus an additional column with the cumulative degree days
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "coredata"
+#' @importFrom "xts" "as.xts"
 #'
 #' @export cdd.lThresh
 #'
@@ -68,7 +67,7 @@ cdd.lThresh <- function(data, t.mean.col, a){
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "index" "coredata"
 #'
 #' @export cdd.lThresh.phenology
 #'
@@ -103,8 +102,6 @@ cdd.lThresh.phenology <- function(cdd.lt, chs.mean){
 #'
 #' @return a vector with the degree days (in Celsius degrees) for vine growth.
 #'
-#' @importFrom xts xts
-#'
 #' @export dd.luThresh
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
@@ -134,7 +131,8 @@ dd.luThresh <- function(t.mean, a, b){
 #' @return list per year for the input data plus an additional column with the cumulative degree days
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "coredata"
+#' @importFrom "xts" "as.xts"
 #'
 #' @export cdd.luThresh
 #'
@@ -168,7 +166,7 @@ cdd.luThresh <- function(data, t.mean.col, a, b){
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "index" "coredata"
 #'
 #' @export cdd.luThresh.phenology
 #'
@@ -206,8 +204,6 @@ cdd.luThresh.phenology <- function(cdd.lut, chs.mean){
 #'
 #' @return a vector with the degree days (in Celsius degrees) for vine growth.
 #'
-#' @importFrom xts xts
-#'
 #' @export dd.luhThresh
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
@@ -242,7 +238,8 @@ dd.luhThresh <- function(t.mean, a, b, c){
 #' @return list per year for the input data plus an additional column with the cumulative degree days
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "coredata"
+#' @importFrom "xts" "as.xts"
 #'
 #' @export cdd.luhThresh
 #'
@@ -276,7 +273,7 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
 #' the cumulative degree days (in Celsius degrees) for phenology.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "index" "coredata"
 #'
 #' @export cdd.luhThresh.phenology
 #'
@@ -317,7 +314,7 @@ cdd.luhThresh.phenology <- function(cdd.luht, chs.mean){
 #' @return list per year, with each list containing a data.frame with the phenological stages
 #' for vine growth.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "coredata"
 #'
 #' @export phenology.stages
 #'
@@ -359,8 +356,6 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
 #'
 #' @return list per year, with each list containing a data.frame with the phenological stages
 #' for vine growth.
-#'
-#' @importFrom xts xts
 #'
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.

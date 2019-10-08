@@ -60,6 +60,7 @@
 #' head(remich.df)
 #'
 #' #' Cohercion to xts
+#' library(xts)
 #' remich.xts <- xts(x = remich.df, order.by = remich.df$time)
 #' head(remich.xts)
 #'
@@ -96,9 +97,8 @@ NULL
 #'
 #' @details The spatial representation for the data corresponds to a SpatialPoints with
 #' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
-
 #'
-#' Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
+#' @format Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
 #' ..@ data   :'data.frame':	466048 obs. of  9 variables: \cr
 #'   .. ..$ ta        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
 #'   .. ..$ mo        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -138,6 +138,7 @@ NULL
 #' head(pik_observ.df)
 #'
 #' #' Cohercion to xts
+#' library(xts)
 #' pik_observ.xts <- xts(x = pik_observ.df, order.by = pik_observ.df$time)
 #' head(pik_observ.xts)
 #'
@@ -145,9 +146,123 @@ NULL
 #' year.ini <- which(index(data_pik_observ@time) == as.POSIXct("1973-06-01",  format = "%Y-%m-%d"))
 #' year.end <- which(index(data_pik_observ@time) == as.POSIXct("1973-06-30",  format = "%Y-%m-%d"))
 #'
-#' stplot(data.stfdf[, year.ini:year.end, "tmit"], scales=list(draw=TRUE))
-#' stplot(data.stfdf[, year.ini:year.end, "tmit"], scales=list(draw=TRUE), mode = "ts")
+#' stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE))
+#' stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE), mode = "ts")
 
+#' @keywords data
+NULL
+
+#' A 'sp' object for the Grevenmacher admininistrative boundaries
+#'
+#' A dataset containing a 'sp' object for the admininistrative boundaries of the District of Grevenmacher
+#' in the Grand-Duchy of Luxembourg. It comprises the Commune and Canton levels as provided by the Luxembourgish Data
+#' Platform. The data is provided as a SpatialPolygonsDataFrame from "sp" package.
+#'
+#' @name data_boundary_grevenmacher
+#' @docType data
+#'
+#' @usage data(data_boundary_grevenmacher)
+#'
+#' @details The spatial representation for the data corresponds to a SpatialPolygonsDataFrame with
+#' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
+#'
+#' @format Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+#'..@ data       :'data.frame':	23 obs. of  4 variables: \cr
+#'  .. ..$ COMMUNE : Factor w/ 23 levels "Beaufort","Bech",..: 14 16 1 18 9 12 8 10 4 2 ... \cr
+#'  .. ..$ CANTON  : Factor w/ 3 levels "Echternach","Grevenmacher",..: 2 3 1 1 1 2 3 2 2 1 ... \cr
+#'  .. ..$ DISTRICT: Factor w/ 1 level "Grevenmacher": 1 1 1 1 1 1 1 1 1 1 ... \cr
+#'  .. ..$ LAU2    : Factor w/ 23 levels "1001","1002",..: 13 19 1 6 5 12 17 10 8 2 ... \cr
+#'  ..@ polygons   :List of 23 \cr
+#'  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'  .. .. .. ..@ Polygons :List of 1 \cr
+#'  .. .. .. .. ..$ :Formal class 'Polygon' [package "sp"] with 5 slots \cr
+#'  .. .. .. .. .. .. ..@ labpt  : num [1:2] 97715 87463 \cr
+#'  .. .. .. .. .. .. ..@ area   : num 27853866 \cr
+#'  .. .. .. .. .. .. ..@ hole   : logi FALSE \cr
+#'  .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'  #'  .. .. .. .. .. .. ..@ coords : num [1:1611, 1:2] 96023 96027 96037 96070 96078 ... \cr
+#'  .. .. .. ..@ plotOrder: int 1 \cr
+#'  .. .. .. ..@ labpt    : num [1:2] 97715 87463 \cr
+#'  .. .. .. ..@ ID       : chr "0" \cr
+#'  .. .. .. ..@ area     : num 27853866 \cr
+#'  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'  .. .. .. ..@ Polygons :List of 1 \cr
+#'  .. .. .. .. ..$ :Formal class 'Polygon' [package "sp"] with 5 slots \cr
+#'  .. .. .. .. .. .. ..@ labpt  : num [1:2] 88254 64603 \cr
+#'  .. .. .. .. .. .. ..@ area   : num 13591512 \cr
+#'  .. .. .. .. .. .. ..@ hole   : logi FALSE \cr
+#'  .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'  .. .. .. .. .. .. ..@ coords : num [1:1012, 1:2] 89679 89677 89674 89673 89673 ... \cr
+#'  .. .. .. ..@ plotOrder: int 1 \cr
+#'  .. .. .. ..@ labpt    : num [1:2] 88254 64603 \cr
+#'  .. .. .. ..@ ID       : chr "1" \cr
+#'  .. .. .. ..@ area     : num 13591512 \cr
+#'  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'  .. .. .. ..@ Polygons :List of 1 \cr
+#'  .. .. .. ..[list output truncated]
+#'
+#' @source \url{https://data.public.lu/fr/datasets/limites-administratives-du-grand-duche-de-luxembourg/}
+#'
+#' @examples
+#' data(data_boundary_grevenmacher)
+#' str(data_boundary_grevenmacher)
+#'
+#' #' plot stfdf object
+#' plot(data_boundary_grevenmacher)
+#'
+#' @keywords data
+NULL
+
+#' A 'sp' object for the Grevenmacher water surfaces
+#'
+#' A dataset containing a 'sp' object for the water surfaces in the District of Grevenmacher
+#' in the Grand-Duchy of Luxembourg. The dataset contains streches from the Moselle (Mosel) and the S{\^u}re rivers.
+#' The data is provided by the Luxembourgish Data Platform, and provided as a SpatialPolygonsDataFrame from "sp" package.
+#'
+#' @name data_water_surface
+#' @docType data
+#'
+#' @usage data(data_water_surface)
+#'
+#' @details The spatial representation for the data corresponds to a SpatialPolygonsDataFrame with
+#' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
+#'
+#' @format Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+#'..@ data       :'data.frame':	1373 obs. of  5 variables: \cr
+#'  .. ..$ cat     : int [1:1373] 1 2 3 4 5 6 7 8 9 10 ... \cr
+#'  .. ..$ id      : int [1:1373] 1 1 1 1 1 1 1 1 1 1 ... \cr
+#'  .. ..$ ID_2    : Factor w/ 1353 levels "2?443?282","2?443?944",..: 2 4 9 16 19 35 39 45 51 56 ... \cr
+#'  .. ..$ NATURE  : int [1:1373] 3 3 3 3 3 3 3 3 3 3 ... \cr
+#'  .. ..$ TOPONYME: Factor w/ 4 levels "Bassin d'?puration",..: NA NA NA NA NA NA NA NA NA NA ... \cr
+#'  ..@ polygons   :List of 1373 \cr
+#'  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'  .. .. .. ..@ Polygons :List of 1 \cr
+#'  .. .. .. .. ..$ :Formal class 'Polygon' [package "sp"] with 5 slots \cr
+#'  .. .. .. .. .. .. ..@ labpt  : num [1:2] 93462 66333 \cr
+#'  .. .. .. .. .. .. ..@ area   : num 145 \cr
+#'  .. .. .. .. .. .. ..@ hole   : logi FALSE \cr
+#'  .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'  .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'  .. .. .. .. .. .. ..@ coords : num [1:11, 1:2] 93468 93468 93466 93464 93462 ... \cr
+#'  .. .. .. ..@ plotOrder: int 1 \cr
+#'  .. .. .. ..@ labpt    : num [1:2] 93462 66333 \cr
+#'  .. .. .. ..@ ID       : chr "0" \cr
+#'  .. .. .. ..@ area     : num 145 \cr
+#'  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'  .. .. .. ..@ Polygons :List of 1 \cr
+#'  .. .. .. ..[list output truncated]
+#'
+#' @source \url{  https://data.public.lu/en/datasets/bd-l-tc-surface-deau/#_}
+#'
+#' @examples
+#' data(data_water_surface)
+#' str(data_water_surface, list.len = 15)
+#'
+#' #' plot stfdf object
+#' library(sp)
+#' spplot(data_water_surface, zcol="id", scales = list(draw = TRUE),
+#'        colorkey = FALSE)
+#'
 #' @keywords data
 NULL
 

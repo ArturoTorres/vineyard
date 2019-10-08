@@ -16,8 +16,6 @@ cdd.single.triangle(data, t.zero, t.min.col, t.mean.col, t.max.col)
 \item{t.mean.col}{numeric, column position in data for the daily mean air temperature vector in Celsius degrees.}
 
 \item{t.max.col}{numeric, column position in data for the daily maximum air temperature vector in Celsius degrees.}
-
-\item{start.date}{numeric, calculated optimum starting date in day of year.}
 }
 \value{
 list per year for the input data plus an additional column with the cumulative degree days

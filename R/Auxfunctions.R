@@ -7,7 +7,7 @@
 #'
 #' @return the xts object for the input dataframe.
 #'
-#' @importFrom xts xts
+#' @importFrom "xts" "xts"
 #'
 #' @export raw2xts
 
@@ -36,9 +36,10 @@ id.na <- function(x){
 #'
 #' @return plots with the NAs highlighted.
 #'
-#' @export plot.na
+#' @importFrom "graphics" "abline" "par" "plot"
+#' @export plot_na
 
-plot.na <- function(x, ids.na){
+plot_na <- function(x, ids.na){
   par(mfrow=c(5,2))
   dat.na <- lapply(ids.na, function(y){
     ifelse((y - 50) >= 0, idx.ini <- index(x)[y - 50], idx.ini <- index(x)[1])
@@ -60,7 +61,7 @@ plot.na <- function(x, ids.na){
 #'
 #' @return a time series with the NAs replaced by data according to the na.locf zoo function.
 #'
-#' @importFrom zoo na.locf
+#' @importFrom "zoo" "na.approx"
 #'
 #' @export fill.na
 

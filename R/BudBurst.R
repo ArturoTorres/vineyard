@@ -3,12 +3,11 @@
 #' Implementation to compute the degree days by the single triangle algorithm by Nendel (2010).
 #'
 #' @param t.min daily minimum air temperature vector in Celsius degrees.
+#' @param t.mean daily mean air temperature vector in Celsius degrees.
 #' @param t.max daily maximum air temperature vector in Celsius degrees.
 #' @param t.zero numeric, threshold temperature (in Celsius degrees) for vine growth.
 #'
 #' @return a vector with the degree-days (in Celsius degrees) for vine growth.
-#'
-#' @importFrom xts xts
 #'
 #' @export dd.single.triangle
 #'
@@ -35,12 +34,12 @@ dd.single.triangle <- function(t.zero, t.min, t.mean, t.max){
 #' @param t.min.col numeric, column position in data for the daily minimum air temperature vector in Celsius degrees.
 #' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
 #' @param t.max.col numeric, column position in data for the daily maximum air temperature vector in Celsius degrees.
-#' @param start.date numeric, calculated optimum starting date in day of year.
 #'
 #' @return list per year for the input data plus an additional column with the cumulative degree days
 #' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "coredata"
+#' @importFrom "xts" "as.xts"
 #'
 #' @export cdd.single.triangle
 #'
@@ -74,7 +73,7 @@ cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
 #' the comulative degree days (in Celsius degrees) for bud break.
 #'
-#' @importFrom xts xts
+#' @importFrom "zoo" "index" "coredata"
 #'
 #' @export cdd.single.triangle.budbreak
 #'

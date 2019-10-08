@@ -11,6 +11,8 @@ dd.single.triangle(t.zero, t.min, t.mean, t.max)
 
 \item{t.min}{daily minimum air temperature vector in Celsius degrees.}
 
+\item{t.mean}{daily mean air temperature vector in Celsius degrees.}
+
 \item{t.max}{daily maximum air temperature vector in Celsius degrees.}
 }
 \value{

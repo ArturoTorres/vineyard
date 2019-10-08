@@ -63,6 +63,7 @@ remich.df <- as.data.frame(data_remich)
 head(remich.df)
 
 #' Cohercion to xts
+library(xts)
 remich.xts <- xts(x = remich.df, order.by = remich.df$time)
 head(remich.xts)
 

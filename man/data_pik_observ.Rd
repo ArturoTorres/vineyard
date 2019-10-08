@@ -4,23 +4,7 @@
 \name{data_pik_observ}
 \alias{data_pik_observ}
 \title{Sample of meteorological data for the Moselle region in Luxembourg}
-\source{
-\url{https://www.pik-potsdam.de/}
-}
-\usage{
-data(data_pik_observ)
-}
-\description{
-A sample dataset containing time series of meteorological data for the Moselle region located in the
-Grand-Duchy of Luxembourg obtained by the Potsdam Institute for Climate Impact Research (PIK) in Germany.
-The data covers the period from 1961 to 2018 at daily time interval. The data is provided as
-a space-time full data frame (STFDF) object from "spacetime" package.
-}
-\details{
-The spatial representation for the data corresponds to a SpatialPoints with
-coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
-
-Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
+\format{Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
 ..@ data   :'data.frame':	466048 obs. of  9 variables: \cr
   .. ..$ ta        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
   .. ..$ mo        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -50,7 +34,22 @@ Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
     Indexed by objects of class: [POSIXct,POSIXt] TZ: \cr
       xts Attributes: \cr
         NULL \cr
-        ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr
+        ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr}
+\source{
+\url{https://www.pik-potsdam.de/}
+}
+\usage{
+data(data_pik_observ)
+}
+\description{
+A sample dataset containing time series of meteorological data for the Moselle region located in the
+Grand-Duchy of Luxembourg obtained by the Potsdam Institute for Climate Impact Research (PIK) in Germany.
+The data covers the period from 1961 to 2018 at daily time interval. The data is provided as
+a space-time full data frame (STFDF) object from "spacetime" package.
+}
+\details{
+The spatial representation for the data corresponds to a SpatialPoints with
+coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
 }
 \examples{
 #' Cohercion to data.frame
@@ -58,6 +57,7 @@ pik_observ.df <- as.data.frame(data_pik_observ)
 head(pik_observ.df)
 
 #' Cohercion to xts
+library(xts)
 pik_observ.xts <- xts(x = pik_observ.df, order.by = pik_observ.df$time)
 head(pik_observ.xts)
 
@@ -65,7 +65,7 @@ head(pik_observ.xts)
 year.ini <- which(index(data_pik_observ@time) == as.POSIXct("1973-06-01",  format = "\%Y-\%m-\%d"))
 year.end <- which(index(data_pik_observ@time) == as.POSIXct("1973-06-30",  format = "\%Y-\%m-\%d"))
 
-stplot(data.stfdf[, year.ini:year.end, "tmit"], scales=list(draw=TRUE))
-stplot(data.stfdf[, year.ini:year.end, "tmit"], scales=list(draw=TRUE), mode = "ts")
+stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE))
+stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE), mode = "ts")
 }
 \keyword{data}
