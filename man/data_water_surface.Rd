@@ -3,7 +3,7 @@
 \docType{data}
 \name{data_water_surface}
 \alias{data_water_surface}
-\title{A 'sp' object for the Grevenmacher water surfaces}
+\title{A 'sp' object for the water surfaces in Grevenmacher}
 \format{Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
 ..@ data       :'data.frame':	1373 obs. of  5 variables: \cr
  .. ..$ cat     : int [1:1373] 1 2 3 4 5 6 7 8 9 10 ... \cr
@@ -41,7 +41,22 @@ The data is provided by the Luxembourgish Data Platform, and provided as a Spati
 }
 \details{
 The spatial representation for the data corresponds to a SpatialPolygonsDataFrame with
-coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
+coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.\cr
+
+The dataset identifies natural or artificial water surface, permanent or not. The field
+NATURE is defined as:  0 = stream surface; 1 = stagnant water surface; 2 = wet zone; 3 = basin;
+4 = purification basin; 5 = pool; 6 = fish farming. \cr
+The selection criteria for defining the NATURE field is: \cr
+0: surface of stream of permanent flow. Minimum width 3.5 m. \cr
+1: permanent water surface without flow: lake, pond, pond whose smallest dimension is greater than 20 m.
+Dams are treated in this class and are updated if their area has increased 50\%. \cr
+2: wetland area greater than 2 Ha, marsh, aquatic vegetation. \cr
+3: open basin. Treatment plant basins, swimming pools or fish farms are treated with
+a particular attribute value. Most small dimension must be greater than 10 m and the outline masonry. \cr
+4: sewage treatment plant basin, the smallest dimension of which must be greater than 10 m and the
+masonry outline. \cr
+5: swimming pool whose smallest dimension must be greater than 10 m. \cr
+6: fish pond with the smallest dimension greater than 10 m and the masonry outline.
 }
 \examples{
 data(data_water_surface)

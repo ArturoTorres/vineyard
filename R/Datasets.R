@@ -213,7 +213,7 @@ NULL
 #' @keywords data
 NULL
 
-#' A 'sp' object for the Grevenmacher water surfaces
+#' A 'sp' object for the water surfaces in Grevenmacher
 #'
 #' A dataset containing a 'sp' object for the water surfaces in the District of Grevenmacher
 #' in the Grand-Duchy of Luxembourg. The dataset contains streches from the Moselle (Mosel) and the S{\^u}re rivers.
@@ -225,7 +225,22 @@ NULL
 #' @usage data(data_water_surface)
 #'
 #' @details The spatial representation for the data corresponds to a SpatialPolygonsDataFrame with
-#' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.
+#' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected.\cr
+#'
+#' The dataset identifies natural or artificial water surface, permanent or not. The field
+#' NATURE is defined as:  0 = stream surface; 1 = stagnant water surface; 2 = wet zone; 3 = basin;
+#' 4 = purification basin; 5 = pool; 6 = fish farming. \cr
+#' The selection criteria for defining the NATURE field is: \cr
+#' 0: surface of stream of permanent flow. Minimum width 3.5 m. \cr
+#' 1: permanent water surface without flow: lake, pond, pond whose smallest dimension is greater than 20 m.
+#' Dams are treated in this class and are updated if their area has increased 50\%. \cr
+#' 2: wetland area greater than 2 Ha, marsh, aquatic vegetation. \cr
+#' 3: open basin. Treatment plant basins, swimming pools or fish farms are treated with
+#' a particular attribute value. Most small dimension must be greater than 10 m and the outline masonry. \cr
+#' 4: sewage treatment plant basin, the smallest dimension of which must be greater than 10 m and the
+#' masonry outline. \cr
+#' 5: swimming pool whose smallest dimension must be greater than 10 m. \cr
+#' 6: fish pond with the smallest dimension greater than 10 m and the masonry outline.
 #'
 #' @format Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
 #'..@ data       :'data.frame':	1373 obs. of  5 variables: \cr
@@ -261,6 +276,72 @@ NULL
 #' #' plot stfdf object
 #' library(sp)
 #' spplot(data_water_surface, zcol="id", scales = list(draw = TRUE),
+#'        colorkey = FALSE)
+#'
+#' @keywords data
+NULL
+
+#' A 'sp' object for the vineyards along the Mosel in Luxemburg in 2018
+
+#'
+#' A dataset containing a 'sp' object for the vineyards along the Mosel in the Grand-Duchy of Luxembourg in 2018.
+#' The data is provided by the Luxembourgish Data Platform, and provided as a SpatialPolygonsDataFrame from "sp" package.
+#'
+#' @name data_vineyards2018
+#' @docType data
+#'
+#' @usage data(data_vineyards2018)
+#'
+#' @details The spatial representation for the data corresponds to a SpatialPolygonsDataFrame with
+#' coordinate reference system (CRS) EPSG:2169 - Luxembourg 1930 / Gauss - Projected. \cr
+#'
+#' @format Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+#' ..@ data       :'data.frame':	4966 obs. of  7 variables: \cr
+#'   .. ..$ Weinbergsn: Factor w/ 4950 levels "1","10005","10007",..: 1359 4035 3194 2950 2952 1083 2849 2871 2874 2951 ... \cr
+#'   .. ..$ CODE_ELEM : Factor w/ 1 level "V": 1 1 1 1 1 1 1 1 1 1 ... \cr
+#'   .. ..$ CODE_COM  : Factor w/ 14 levels "?","022","023",..: 12 4 14 6 12 12 14 14 14 14 ... \cr
+#'   .. ..$ CODE_SECT : Factor w/ 8 levels "A","b","B","c",..: 1 7 8 7 3 3 7 7 7 7 ... \cr
+#'   .. ..$ Shape_Leng: num [1:4966] 164 247 231 311 282 ... \cr
+#'   .. ..$ Shape_Le_1: num [1:4966] 164 247 231 311 282 ... \cr
+#'   .. ..$ Shape_Area: num [1:4966] 504 3773 3000 6016 2686 ... \cr
+#'   ..@ polygons   :List of 4966 \cr
+#'   .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'   .. .. .. ..@ Polygons :List of 1 \cr
+#'   .. .. .. .. ..$ :Formal class 'Polygon' [package "sp"] with 5 slots \cr
+#'   .. .. .. .. .. .. ..@ labpt  : num [1:2] 93823 71477 \cr
+#'   .. .. .. .. .. .. ..@ area   : num 504 \cr
+#'   .. .. .. .. .. .. ..@ hole   : logi FALSE \cr
+#'   .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'   .. .. .. .. .. .. ..@ coords : num [1:6, 1:2] 93793 93797 93853 93851 93849 ... \cr
+#'   .. .. .. ..@ plotOrder: int 1 \cr
+#'   .. .. .. ..@ labpt    : num [1:2] 93823 71477 \cr
+#'   .. .. .. ..@ ID       : chr "0" \cr
+#'   .. .. .. ..@ area     : num 504 \cr
+#'   .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'   .. .. .. ..@ Polygons :List of 1 \cr
+#'   .. .. .. .. ..$ :Formal class 'Polygon' [package "sp"] with 5 slots \cr
+#'   .. .. .. .. .. .. ..@ labpt  : num [1:2] 96817 77073 \cr
+#'   .. .. .. .. .. .. ..@ area   : num 3773 \cr
+#'   .. .. .. .. .. .. ..@ hole   : logi FALSE \cr
+#'   .. .. .. .. .. .. ..@ ringDir: int 1 \cr
+#'   .. .. .. .. .. .. ..@ coords : num [1:8, 1:2] 96857 96848 96839 96827 96777 ... \cr
+#'   .. .. .. ..@ plotOrder: int 1 \cr
+#'   .. .. .. ..@ labpt    : num [1:2] 96817 77073 \cr
+#'   .. .. .. ..@ ID       : chr "1" \cr
+#'   .. .. .. ..@ area     : num 3773 \cr
+#'   .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
+#'   .. .. .. ..@ Polygons :List of 1 \cr
+#'   .. .. .. ..[list output truncated]
+#'
+#' @source \url{https://data.public.lu/fr/datasets/vineyards/}
+#'
+#' @examples
+#' data(data_vineyards2018)
+#' str(data_vineyards2018, list.len = 15)
+#'
+#' #' plot sp object
+#' library(sp)
+#' spplot(data_vineyards2018, zcol="Weinbergsn", col = "Brown", scales = list(draw = TRUE),
 #'        colorkey = FALSE)
 #'
 #' @keywords data
