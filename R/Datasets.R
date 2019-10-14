@@ -130,7 +130,8 @@ NULL
 #'         NULL \cr
 #'         ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr
 
-#' @source \url{https://www.pik-potsdam.de/}
+#' @references Christoph Menz and Thomas Kartschall, 2019. Project CLIM4VITIS: Climate change impact mitigation
+#' for European viticulture. Potsdam Institut fuer Klimafolgenforschung (PIK), Germany. \url{https://clim4vitis.eu/}.
 #'
 #' @examples
 #' #' Cohercion to data.frame

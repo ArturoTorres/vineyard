@@ -35,9 +35,6 @@
       xts Attributes: \cr
         NULL \cr
         ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr}
-\source{
-\url{https://www.pik-potsdam.de/}
-}
 \usage{
 data(data_pik_observ)
 }
@@ -67,5 +64,9 @@ year.end <- which(index(data_pik_observ@time) == as.POSIXct("1973-06-30",  forma
 
 stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE))
 stplot(data_pik_observ[, year.ini:year.end, "tmit"], scales=list(draw=TRUE), mode = "ts")
+}
+\references{
+Christoph Menz and Thomas Kartschall, 2019. Project CLIM4VITIS: Climate change impact mitigation
+for European viticulture. Potsdam Institut fuer Klimafolgenforschung (PIK), Germany. \url{https://clim4vitis.eu/}.
 }
 \keyword{data}
