@@ -266,8 +266,10 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
 #' Implementation to compute the cumulative degree days by the lower, upper and heat temperature thresholds by
 #' Molitor et al. (2014) for phenology.
 #'
+#' @param cdd.bb cumulative degree days (CDD) by the single triangle algorithm for bud break in xts format as provided by
+#' "cdd.single.triangle.budbreak" function.
 #' @param cdd.luht cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-#' "DD.LUH.cumulative" function.
+#' "cdd.luhThresh" function.
 #' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
 #'
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
@@ -281,14 +283,18 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-cdd.luhThresh.phenology <- function(cdd.luht, chs.mean){
-  idx <- lapply(cdd.luht, FUN = function(x){
-    idx <- which(as.numeric(x$cdd_luht) <= chs.mean)
+cdd.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
+  # x <- 46
+  idx <- lapply(1:length(cdd.bb), FUN = function(x){
+    idx <- which(as.numeric(cdd.bb[[x]]$cdd_st) <= chs.mean)
     idx <- idx[length(idx)] + 1
-    idx <- index(x[idx,])
+    idx <- index(cdd.bb[[x]][idx,])
 
-    idx.subset <- paste0(idx,"/")
-    subset <- x[idx.subset]
+    idx1 <- which(index(cdd.luht[[x]]$cdd_luht) == idx)
+    idx1 <- index(cdd.luht[[x]][idx1,])
+
+    idx1.subset <- paste0(idx1,"/")
+    subset <- cdd.luht[[x]][idx1.subset]
 
     cdd.phen <- as.numeric(coredata(subset$cdd_luht)) - rep(as.numeric(coredata(subset$cdd_luht[1])), nrow(subset))
     subset$cdd_luht <- cdd.phen
@@ -323,20 +329,35 @@ cdd.luhThresh.phenology <- function(cdd.luht, chs.mean){
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
 phenology.stages <- function(cdd.phen, ref.data, stage){
+  try(
+  # w <- cdd.phen[[3]]
   lapply(X = cdd.phen, FUN = function(w){
     id      <- which(ref.data[1] == stage)
     ref.cdd <- ref.data[id, "CDD"]
+    # x <- ref.cdd[26]
     idx     <- lapply(X = as.list(ref.cdd), FUN = function(x) {
-      min(which(as.numeric(coredata(w[,ncol(w)])) >= as.numeric(x)))
+      if(x >= max(as.numeric(coredata(w[,ncol(w)])))){
+       NA
+      }else{
+        min(which(as.numeric(coredata(w[,ncol(w)])) >= as.numeric(x)))
+      }
     })
 
     phen    <- mapply(FUN = function(x, y){
+      if (is.na(x) | is.na(y)){
+        warning("cdd for the time series doesn't reach one or more phenological stages")
+        no.data <- data.frame(t(rep(NA,19)))
+        colnames(no.data) <- colnames(w)
+        return(cbind.data.frame(ref.data[x,], no.data, stringsAsFactors = FALSE))
+      }
+
       cbind.data.frame(ref.data[x,], w[y,], stringsAsFactors = FALSE)
     }, x = id, y = idx
     )
 
     return(t(phen))
   })
+  )
 }
 
 

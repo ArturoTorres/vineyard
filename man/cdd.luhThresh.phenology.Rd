@@ -4,11 +4,14 @@
 \alias{cdd.luhThresh.phenology}
 \title{Cumulative degree days (CDD) by the lower, upper and heat temperature thresholds for phenology}
 \usage{
-cdd.luhThresh.phenology(cdd.luht, chs.mean)
+cdd.luhThresh.phenology(cdd.bb, cdd.luht, chs.mean)
 }
 \arguments{
+\item{cdd.bb}{cumulative degree days (CDD) by the single triangle algorithm for bud break in xts format as provided by
+"cdd.single.triangle.budbreak" function.}
+
 \item{cdd.luht}{cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-"DD.LUH.cumulative" function.}
+"cdd.luhThresh" function.}
 
 \item{chs.mean}{numeric, mean cumulative heat sum for bud break (in Celsius degrees).}
 }
