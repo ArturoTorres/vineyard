@@ -76,6 +76,16 @@ NULL
 #'
 #' @name GrowthStage_CDD
 #' @docType data
+#'
+#' @usage data(GrowthStage_CDD)
+#'
+#' @format 'data.frame':	27 obs. of  3 variables: \cr
+#' $ Growth_stage: int  9 11 12 13 14 15 16 17 18 19 ... \cr
+#' $ Description : chr  "Budburst: green shoot tips clearly visible"  \cr
+#' "First leaf unfolded and spread away from shoot"  \cr
+#' "Two leaves unfolded" "Three leaves unfolded" ... \cr
+#' $ CDD         : num  NA 34.9 58.6 80.8 110.2 ...
+#
 #' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80, 2014.
@@ -348,3 +358,29 @@ NULL
 #' @keywords data
 NULL
 
+
+
+#' Observed day of year (DOY) of stage BBCH-09 in Remich
+#'
+#' A sample dataset containing the Observed day of year (DOY) of stage BBCH-09 in Remich
+#' for the period 1972 to 2019 from Molitor et al. (?).
+#'
+#' @name data_remich_bbch09
+#' @docType data
+#'
+#' @usage data(data_remich_bbch09)
+#'
+#' @format 'data.frame':	48 obs. of  9 variables: \cr
+#' $ Year     : int  1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 ... \cr
+#' $ Elbling  : int  123 132 103 123 120 124 105 133 124 103 ... \cr
+#' $ Rivaner  : int  124 133 104 123 122 124 107 133 126 104 ... \cr
+#' $ Auxerrois: int  124 132 104 124 122 125 107 133 126 105 ... \cr
+#' $ P.Blanc  : int  123 135 104 123 122 124 107 134 127 105 ... \cr
+#' $ P.Gris   : int  123 134 104 124 122 124 106 134 126 106 ... \cr
+#' $ Riesling : int  125 135 105 124 123 125 108 134 127 105 ... \cr
+#' $ Gew.Tr.  : int  123 134 104 123 120 125 104 133 127 104 ... \cr
+#' $ Average  : num  124 134 104 123 122 ...
+#'
+#' @references Daniel Molitor, ...
+#' @keywords data
+NULL

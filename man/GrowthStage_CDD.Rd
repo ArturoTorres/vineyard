@@ -4,6 +4,15 @@
 \name{GrowthStage_CDD}
 \alias{GrowthStage_CDD}
 \title{Cumulative degree days and growth stages}
+\format{'data.frame':	27 obs. of  3 variables: \cr
+$ Growth_stage: int  9 11 12 13 14 15 16 17 18 19 ... \cr
+$ Description : chr  "Budburst: green shoot tips clearly visible"  \cr
+"First leaf unfolded and spread away from shoot"  \cr
+"Two leaves unfolded" "Three leaves unfolded" ... \cr
+$ CDD         : num  NA 34.9 58.6 80.8 110.2 ...}
+\usage{
+data(GrowthStage_CDD)
+}
 \description{
 A sample dataset containing the cumulative degree days (CDD) with optimized lower,
 upper, and heat threshold triplets (5, 20, 22°C) per growth stages

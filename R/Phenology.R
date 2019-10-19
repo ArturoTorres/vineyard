@@ -329,11 +329,11 @@ cdd.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
 phenology.stages <- function(cdd.phen, ref.data, stage){
-  try(
+  ref.data1 = ref.data[-1,]
   # w <- cdd.phen[[3]]
   lapply(X = cdd.phen, FUN = function(w){
-    id      <- which(ref.data[1] == stage)
-    ref.cdd <- ref.data[id, "CDD"]
+    id      <- which(ref.data1[1] == stage)
+    ref.cdd <- ref.data1[id, "CDD"]
     # x <- ref.cdd[26]
     idx     <- lapply(X = as.list(ref.cdd), FUN = function(x) {
       if(x >= max(as.numeric(coredata(w[,ncol(w)])))){
@@ -348,16 +348,19 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
         warning("cdd for the time series doesn't reach one or more phenological stages")
         no.data <- data.frame(t(rep(NA,19)))
         colnames(no.data) <- colnames(w)
-        return(cbind.data.frame(ref.data[x,], no.data, stringsAsFactors = FALSE))
+        return(cbind.data.frame(ref.data1[x,], no.data, stringsAsFactors = FALSE))
       }
 
-      cbind.data.frame(ref.data[x,], w[y,], stringsAsFactors = FALSE)
+      cbind.data.frame(ref.data1[x,], w[y,], stringsAsFactors = FALSE)
     }, x = id, y = idx
     )
 
-    return(t(phen))
+    phen <- t(phen)
+    res  <- cbind.data.frame(ref.data[1,], w[1,], stringsAsFactors = FALSE)
+    phen <- rbind.data.frame(res, phen, stringsAsFactors = FALSE)
+
+    return(phen)
   })
-  )
 }
 
 
