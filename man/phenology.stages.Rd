@@ -10,7 +10,7 @@ phenology.stages(cdd.phen, ref.data, stage)
 \item{cdd.phen}{list, cumulative degree days (in Celsius degrees) for vine growth in xts format as
 provided by any of the functions "cdd.1Tresh.phenology" or "cdd.2Tresh.phenology" or  "cdd.3Tresh.phenology".}
 
-\item{ref.data}{data.frame, reference dataset to define the phenological stages e.g. "GowthStage_CDD"
+\item{ref.data}{data.frame, reference dataset to define the phenological stages e.g. "GrowthStage_CDD"
 dataset.}
 
 \item{stage}{vector, growth stage(s) for which the phenology should be computed. One or more out of

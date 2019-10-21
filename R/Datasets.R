@@ -384,3 +384,30 @@ NULL
 #' @references Daniel Molitor, ...
 #' @keywords data
 NULL
+
+
+
+#' Observed day of year (DOY) of stage BBCH-81 in Remich
+#'
+#' A sample dataset containing the Observed day of year (DOY) of stage BBCH-81 in Remich
+#' for the period 1972 to 2015 from Molitor et al. (?).
+#'
+#' @name data_remich_bbch81
+#' @docType data
+#'
+#' @usage data(data_remich_bbch81)
+#'
+#' @format 'data.frame':	44 obs. of  9 variables: \cr
+#' $ Year     : int  1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 ... \cr
+#' $ Elbling  : int  268 247 254 242 233 NA NA NA NA NA ... \cr
+#' $ Rivaner  : int  240 236 234 228 224 NA 246 NA 253 229 ... \cr
+#' $ Auxerrois: int  244 237 246 232 227 NA NA NA NA NA ... \cr
+#' $ P.Blanc  : int  249 246 249 242 232 NA NA NA NA NA ... \cr
+#' $ P.Gris   : int  248 239 237 232 230 NA NA NA NA NA ... \cr
+#' $ Riesling : int  266 242 252 241 232 NA NA NA NA NA ... \cr
+#' $ Gew.Tr.  : int  249 236 249 236 228 NA NA NA NA NA ... \cr
+#' $ Average  : num  252 240 246 236 229 ...
+#'
+#' @references Daniel Molitor, ...
+#' @keywords data
+NULL

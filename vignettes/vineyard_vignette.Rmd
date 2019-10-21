@@ -122,9 +122,9 @@ phen.riesling.lut[[1]]
 
 ## Calculation of degree-days by a lower, upper and heat temperature thresholds (Molitor et al., 2014)
 ```{r degree_days_molitor3}
-cdd.luht <- cdd.luhThresh(data = remich.years, t.mean.col = 17, a = 0, b = 15, c = 20)
+cdd.luht <- cdd.luhThresh(data = remich.years, t.mean.col = 17, a = 5, b = 20, c = 22)
 
-head(cdd.luht[[1]])
+head(cdd.luht[[46]])
 ```
 
 ## Calculation of phenology by the lower, upper and heat temperature thresholds (Molitor et al., 2014)
@@ -132,23 +132,23 @@ head(cdd.luht[[1]])
 
 # mean cumulative heat sum for bud break of 438.7 degree celsius for
 # Mueller-Thurgau (Nelder, 2010)
-cdd.phen.mthurgau.luht <- cdd.luhThresh.phenology(cdd.luht = cdd.luht, chs.mean = 438.7)
-head(cdd.phen.mthurgau.luht[[1]])
+cdd.phen.mthurgau.luht <- cdd.luhThresh.phenology(cdd.bb = cdd.bb, cdd.luht = cdd.luht, chs.mean = 438.7)
+head(cdd.phen.mthurgau.luht[[46]])
 
-# mean cumulative heat sum for bud break of 438.7 degree celsius for
+# mean cumulative heat sum for bud break of 463.1 degree celsius for
 # Riesling (Nelder, 2010)
-cdd.phen.riesling.luht <- cdd.luhThresh.phenology(cdd.luht = cdd.luht, chs.mean = 463.1)
-head(cdd.phen.riesling.luht[[1]])
+cdd.phen.riesling.luht <- cdd.luhThresh.phenology(cdd.bb = cdd.bb, cdd.luht = cdd.luht, chs.mean = 463.1)
+head(cdd.phen.riesling.luht[[46]])
 
 # growth stages
-phen.mthurgau.luht <- phenology.stages(cdd.phen = cdd.phen.mthurgau.luht, ref.data = GrowthStage_CDD[-1,],
+phen.mthurgau.luht <- phenology.stages(cdd.phen = cdd.phen.mthurgau.luht, ref.data = GrowthStage_CDD,
                                       stage = GrowthStage_CDD[-1,1])
-phen.mthurgau.luht[[1]]
+phen.mthurgau.luht[[46]]
 
 
-phen.riesling.luht <- phenology.stages(cdd.phen = cdd.phen.mthurgau.luht, ref.data = GrowthStage_CDD[-1,],
+phen.riesling.luht <- phenology.stages(cdd.phen = cdd.phen.riesling.luht, ref.data = GrowthStage_CDD,
                                       stage = GrowthStage_CDD[-1,1])
-phen.riesling.luht[[1]]
+phen.riesling.luht[[46]]
 ```
 
 ## Timing

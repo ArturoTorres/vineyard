@@ -311,7 +311,7 @@ cdd.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
 #'
 #' @param cdd.phen list, cumulative degree days (in Celsius degrees) for vine growth in xts format as
 #' provided by any of the functions "cdd.1Tresh.phenology" or "cdd.2Tresh.phenology" or  "cdd.3Tresh.phenology".
-#' @param ref.data data.frame, reference dataset to define the phenological stages e.g. "GowthStage_CDD"
+#' @param ref.data data.frame, reference dataset to define the phenological stages e.g. "GrowthStage_CDD"
 #' dataset.
 #' @param stage vector, growth stage(s) for which the phenology should be computed. One or more out of
 #' the 27 stages that range from 11 (First leaf unfolded and spread away from shoot) to
@@ -363,6 +363,36 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
   })
 }
 
+#' Compare by growth stage from phenology output
+#'
+#' Implementation to compare observations versus computations for growth stage from phenology output.
+#'
+#' @param ref.data data.frame, reference dataset to define the observations for the phenological stage to compare
+#' e.g. "data_remich_bbch09" or "data_remich_bbch81" datasets.
+#' @param phen list per year, with each list containing a data.frame with the phenological stages
+#' for vine growth as the output from the "phenology.stages" function.
+#' @param growth.stage numeric, one of the growth stages to compute the summary.
+#'
+#' @return data.frame, with each row containing a year with the comparison of the phenological stage computed
+#' and observed. The last colunm indicates the "Difference" between observed and computed day of year (DOY).
+#'
+#' @export compare.stage
+
+compare.stage <- function(ref.data, phen, growth.stage){
+  # x <- phen[[46]]
+  bbch <- lapply(phen, function(x){
+    idx <- which(x$Growth_stage == growth.stage)
+    out <- x[idx, c("Growth_stage", "Description", "Year", "Month", "Day", "DayYear")]
+  })
+
+  out <- do.call(rbind, bbch)
+  df <- data.frame(matrix(unlist(out), nrow=nrow(out), byrow=FALSE),stringsAsFactors=FALSE)
+  colnames(df) <- colnames(out)
+
+  df <- merge(df, ref.data, by="Year")
+  df$Difference <- as.numeric(df[, ncol(df)]) - as.numeric(df[, "DayYear"])
+  df
+}
 
 
 #' Cumulative degree days (CDD) by temperature thresholds for phenology
@@ -391,3 +421,6 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
 #           function(x){
 #
 #           }
+
+
+
