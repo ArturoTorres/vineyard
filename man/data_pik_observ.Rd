@@ -4,7 +4,8 @@
 \name{data_pik_observ}
 \alias{data_pik_observ}
 \title{Sample of meteorological data for the Moselle region in Luxembourg}
-\format{Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
+\format{
+Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
 ..@ data   :'data.frame':	466048 obs. of  9 variables: \cr
   .. ..$ ta        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
   .. ..$ mo        : num [1:466048] 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -34,7 +35,8 @@
     Indexed by objects of class: [POSIXct,POSIXt] TZ: \cr
       xts Attributes: \cr
         NULL \cr
-        ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr}
+        ..@ endTime: POSIXct[1:21184], format: "1961-01-02" "1961-01-03" "1961-01-04" "1961-01-05" ... \cr
+}
 \usage{
 data(data_pik_observ)
 }

@@ -4,9 +4,7 @@ Title: Bud Break, Phenological and Yield Models for Vineyards
 Version: 0.1.0
 Author: D. Molitor [aut]
     J. Junk [aut]
-    M. Sulis [aut]
     J. A. Torres-Matallana [cre, aut]
-    S. Bhattacharya [ctb]
     U. Leopold [ctb]
     Luxembourg Institute of Science and Technology (LIST) [cph]
 Maintainer: J. A. Torres-Matallana <arturo.torres@list.lu>
@@ -23,7 +21,7 @@ Description: Late frosts are a significant risk to grape production in
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Imports:
     xts,
     zoo

@@ -68,11 +68,12 @@
 NULL
 
 
-#' Cumulative degree days and growth stages
+#' Cumulative degree days and BBCH growth stages
 #'
-#' A sample dataset containing the cumulative degree days (CDD) with optimized lower,
-#' upper, and heat threshold triplets (5, 20, 22°C) per growth stages
-#' according to Table 4 from Molitor et al. (2014).
+#' A sample dataset containing the cumulative degree days (CDD) for optimized lower,
+#' upper, and heat threshold triplets for Mueller-Thurgau (5°C, 20°C, 22°C),
+#' Riesling  (7°C, 18°C, 24°C) and Pinot noir  (3°C, 20°C, 24°C) per BBCH growth stages
+#' according to Supplementary Table 2 from Molitor and Junk (2019).
 #'
 #' @name GrowthStage_CDD
 #' @docType data
@@ -86,9 +87,10 @@ NULL
 #' "Two leaves unfolded" "Three leaves unfolded" ... \cr
 #' $ CDD         : num  NA 34.9 58.6 80.8 110.2 ...
 #
-#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer.
-#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
-#' Am. J. Enol. Vitic., (65:1):72–80, 2014.
+#' @references Daniel Molitor, Jürgen Junk.
+#' Climate change is implicating a two-fold impact on air temperature increase
+#' in the ripening period under the conditions of the Luxembourgish grapegrowing region.
+#' Vine and Wine Open Access Journal, Oneo One, (3):409-422, 2019.
 #' @keywords data
 NULL
 

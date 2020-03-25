@@ -260,14 +260,13 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
   return(cdd.LUHtt)
 }
 
-
 #' Cumulative degree days (CDD) by the lower, upper and heat temperature thresholds for phenology
 #'
 #' Implementation to compute the cumulative degree days by the lower, upper and heat temperature thresholds by
 #' Molitor et al. (2014) for phenology.
 #'
-#' @param cdd.bb cumulative degree days (CDD) by the single triangle algorithm for bud break in xts format as provided by
-#' "cdd.single.triangle.budbreak" function.
+#' @param cdd.bb cumulative degree days (CDD) by the
+#' single triangle algorithm for bud break in xts format as provided by "cdd.single.triangle.budbreak" function.
 #' @param cdd.luht cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
 #' "cdd.luhThresh" function.
 #' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
@@ -304,6 +303,48 @@ cdd.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
   })
 }
 
+#' Cumulative degree days (CDD) by the simple algorithm and lower, upper and heat temperature thresholds for phenology
+#'
+#' Implementation to compute the cumulative degree days by the simple algorithm and the lower, upper and heat temperature thresholds by
+#' Molitor et al. (2014) for phenology.
+#'
+#' @param cdd.bb cumulative degree days (CDD) by the
+#' simple algorithm for bud break in xts format as provided by "cdd.simple.budbreak" function.
+#' @param cdd.luht cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
+#' "cdd.luhThresh" function.
+#' @param chs.mean numeric, mean cumulative heat sum for bud break (in Celsius degrees).
+#'
+#' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
+#' the cumulative degree days (in Celsius degrees) for phenology.
+#'
+#' @importFrom "zoo" "index" "coredata"
+#'
+#' @export cdd.simple.luhThresh.phenology
+#'
+#' @references Daniel Molitor, Jürgen Junk, Danièle Evers, Lucien Hoffmann, and Marco Beyer (2014).
+#' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
+#' Am. J. Enol. Vitic., (65:1):72–80.
+
+cdd.simple.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
+  # x <- 46
+  idx <- lapply(1:length(cdd.bb), FUN = function(x){
+    idx <- which(as.numeric(cdd.bb[[x]]$cdd_simple) <= chs.mean)
+    idx <- idx[length(idx)] + 1
+    idx <- index(cdd.bb[[x]][idx,])
+
+    idx1 <- which(index(cdd.luht[[x]]$cdd_luht) == idx)
+    idx1 <- index(cdd.luht[[x]][idx1,])
+
+    idx1.subset <- paste0(idx1,"/")
+    subset <- cdd.luht[[x]][idx1.subset]
+
+    cdd.phen <- as.numeric(coredata(subset$cdd_luht)) - rep(as.numeric(coredata(subset$cdd_luht[1])), nrow(subset))
+    subset$cdd_luht <- cdd.phen
+    colnames(subset$cdd_luht) <- "cdd_phenology"
+
+    return(subset)
+  })
+}
 
 #' Compute phenological stages
 #'
@@ -328,12 +369,22 @@ cdd.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
 #' A high-resolution cumulative degree day-based model to simulate phenological development of grapevine.
 #' Am. J. Enol. Vitic., (65:1):72–80.
 
-phenology.stages <- function(cdd.phen, ref.data, stage){
-  ref.data1 = ref.data[-1,]
+phenology.stages <- function(cdd.phen, ref.data, stage, cultivar){
+  if(cultivar == "Rivaner") {
+    ref.data1 = ref.data[-1, c("BBCH_stage", "Description", "CDD_MuellerThurgau")]
+    ref.data2 = ref.data[  , c("BBCH_stage", "Description", "CDD_MuellerThurgau")]
+  }else if(cultivar == "Riesling") {
+    ref.data1 = ref.data[-1, c("BBCH_stage", "Description", "CDD_Riesling")]
+    ref.data2 = ref.data[  , c("BBCH_stage", "Description", "CDD_Riesling")]
+  }else if(cultivar == "P.Gris") {
+    ref.data1 = ref.data[-1, c("BBCH_stage", "Description", "CDD_PinotNoir")]
+    ref.data2 = ref.data[  , c("BBCH_stage", "Description", "CDD_PinotNoir")]
+  }
+
   # w <- cdd.phen[[3]]
   lapply(X = cdd.phen, FUN = function(w){
     id      <- which(ref.data1[1] == stage)
-    ref.cdd <- ref.data1[id, "CDD"]
+    ref.cdd <- ref.data1[id, 3] # 3 indicates column with CDD_xx
     # x <- ref.cdd[26]
     idx     <- lapply(X = as.list(ref.cdd), FUN = function(x) {
       if(x >= max(as.numeric(coredata(w[,ncol(w)])))){
@@ -346,7 +397,7 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
     phen    <- mapply(FUN = function(x, y){
       if (is.na(x) | is.na(y)){
         warning("cdd for the time series doesn't reach one or more phenological stages")
-        no.data <- data.frame(t(rep(NA,19)))
+        no.data <- data.frame(t(rep(NA,ncol(w))))
         colnames(no.data) <- colnames(w)
         return(cbind.data.frame(ref.data1[x,], no.data, stringsAsFactors = FALSE))
       }
@@ -356,7 +407,7 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
     )
 
     phen <- t(phen)
-    res  <- cbind.data.frame(ref.data[1,], w[1,], stringsAsFactors = FALSE)
+    res  <- cbind.data.frame(ref.data2[1,], w[1,], stringsAsFactors = FALSE)
     phen <- rbind.data.frame(res, phen, stringsAsFactors = FALSE)
 
     return(phen)
@@ -381,8 +432,8 @@ phenology.stages <- function(cdd.phen, ref.data, stage){
 compare.stage <- function(ref.data, phen, growth.stage){
   # x <- phen[[46]]
   bbch <- lapply(phen, function(x){
-    idx <- which(x$Growth_stage == growth.stage)
-    out <- x[idx, c("Growth_stage", "Description", "Year", "Month", "Day", "DayYear")]
+    idx <- which(x$BBCH_stage == growth.stage)
+    out <- x[idx, c("BBCH_stage", "Description", "Year", "Month", "Day", "DayYear")]
   })
 
   out <- do.call(rbind, bbch)

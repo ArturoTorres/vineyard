@@ -4,7 +4,8 @@
 \name{data_boundary_grevenmacher}
 \alias{data_boundary_grevenmacher}
 \title{A 'sp' object for the Grevenmacher admininistrative boundaries}
-\format{Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+\format{
+Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
 ..@ data       :'data.frame':	23 obs. of  4 variables: \cr
  .. ..$ COMMUNE : Factor w/ 23 levels "Beaufort","Bech",..: 14 16 1 18 9 12 8 10 4 2 ... \cr
  .. ..$ CANTON  : Factor w/ 3 levels "Echternach","Grevenmacher",..: 2 3 1 1 1 2 3 2 2 1 ... \cr
@@ -37,7 +38,8 @@
  .. .. .. ..@ area     : num 13591512 \cr
  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
  .. .. .. ..@ Polygons :List of 1 \cr
- .. .. .. ..[list output truncated]}
+ .. .. .. ..[list output truncated]
+}
 \source{
 \url{https://data.public.lu/fr/datasets/limites-administratives-du-grand-duche-de-luxembourg/}
 }

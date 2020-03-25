@@ -4,17 +4,19 @@
 \alias{cdd.single.triangle.budbreak}
 \title{Cumulative degree days (CDD) by the single triangle algorithm for bud break}
 \usage{
-cdd.single.triangle.budbreak(cdd, start.date)
+cdd.single.triangle.budbreak(cdd, start.month, start.day)
 }
 \arguments{
 \item{cdd}{cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-"DD.single.triangle.cumulative" function.}
+"cdd.single.triangle" function.}
 
-\item{start.date}{numeric, calculated optimum starting date in day of year.}
+\item{start.month}{numeric, calculated optimum starting month of year.}
+
+\item{start.day}{numeric, calculated optimum starting day of start.month.}
 }
 \value{
 the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
-the comulative degree days (in Celsius degrees) for bud break.
+the cumulative degree days (in Celsius degrees) for bud break.
 }
 \description{
 Implementation to compute the cumulative degree days by the single triangle algorithm by Nendel (2010)

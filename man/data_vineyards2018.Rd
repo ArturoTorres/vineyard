@@ -4,7 +4,8 @@
 \name{data_vineyards2018}
 \alias{data_vineyards2018}
 \title{A 'sp' object for the vineyards along the Mosel in Luxemburg in 2018}
-\format{Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+\format{
+Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
 ..@ data       :'data.frame':	4966 obs. of  7 variables: \cr
   .. ..$ Weinbergsn: Factor w/ 4950 levels "1","10005","10007",..: 1359 4035 3194 2950 2952 1083 2849 2871 2874 2951 ... \cr
   .. ..$ CODE_ELEM : Factor w/ 1 level "V": 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -40,7 +41,8 @@
   .. .. .. ..@ area     : num 3773 \cr
   .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
   .. .. .. ..@ Polygons :List of 1 \cr
-  .. .. .. ..[list output truncated]}
+  .. .. .. ..[list output truncated]
+}
 \source{
 \url{https://data.public.lu/fr/datasets/vineyards/}
 }

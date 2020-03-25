@@ -1,3 +1,63 @@
+#' Cumulative degree days (CDD) by the simple algorithm
+#'
+#' Implementation to compute the cumulative degree days by the simple algorithm by Nendel (2010).
+#'
+#' @param data input data in xts format.
+#' @param t.mean.col numeric, column position in data for the daily mean air temperature vector in Celsius degrees.
+#' @param start.month
+#' @param start.day
+#'
+#' @return list per year for the input data plus an additional column with the cumulative degree days
+#' (in Celsius degrees) for vine growth. The output for each year is a "xts" time series object.
+#'
+#' @importFrom "zoo" "coredata"
+#' @importFrom "xts" "as.xts"
+#'
+#' @export cdd.simple.budbreak
+#'
+#' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
+#' Int. J. Biometeorol., 54, 231–241.
+
+cdd.simple.budbreak <- function(data, t.mean.col, start.month, start.day){
+  cdd1   <- lapply(data, function(x){
+    # x <- data[[1]]
+    data_2mar <- x[.indexmon(x) == start.month-1 & .indexmday(x) == start.day,]
+    idx <- which(index(x) == index(data_2mar))
+
+    cdd.calc <- x[, t.mean.col]
+    # head(cdd.calc)
+    cdd.calc[1:(idx-1)] <- 0
+
+    out <- as.xts(cbind(x, cdd_simple = cumsum(cdd.calc)))
+
+    return(out)
+  })
+
+  # cdd <- mapply(FUN = function(x, cdd1) as.xts(cbind(x, cdd_simple=cumsum(cdd1))), x = data, cdd1 = cdd1)
+  # return(cdd)
+
+  idx <- lapply(cdd1, FUN = function(x){
+    # x <- cdd1[[1]]
+    # head(x)
+    data_2mar <- x[.indexmon(x) == start.month-1 & .indexmday(x) == start.day,]
+    idx       <- which(index(x) == index(data_2mar))
+
+    idx <- index(x)[idx]
+    idx.subset <- paste0(idx,"/")
+
+    subset <- x[idx.subset]
+
+    # cdd.bb <- as.numeric(coredata(subset[,"cdd_simple"])) - rep(as.numeric(coredata(subset[1,"cdd_simple"])), nrow(subset))
+    # subset[,"cdd_simple"] <- cdd.bb
+    # colnames(subset[,"cdd_simple"]) <- "cdd.bb"
+
+    return(subset)
+  })
+
+}
+
+
+
 #' Degree days by the single triangle algorithm
 #'
 #' Implementation to compute the degree days by the single triangle algorithm by Nendel (2010).
@@ -67,11 +127,12 @@ cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
 #' for bud break.
 #'
 #' @param cdd cumulative degree days (in Celsius degrees) for vine growth in xts format as provided by
-#' "DD.single.triangle.cumulative" function.
-#' @param start.date numeric, calculated optimum starting date in day of year.
+#' "cdd.single.triangle" function.
+#' @param start.month numeric, calculated optimum starting month of year.
+#' @param start.day numeric, calculated optimum starting day of start.month.
 #'
 #' @return the cumulative degree days (in Celsius degrees) for vine growth plus an additional column with
-#' the comulative degree days (in Celsius degrees) for bud break.
+#' the cumulative degree days (in Celsius degrees) for bud break.
 #'
 #' @importFrom "zoo" "index" "coredata"
 #'
@@ -80,10 +141,16 @@ cdd.single.triangle <- function(data, t.zero, t.min.col, t.mean.col, t.max.col){
 #' @references Nendel, Class (2010). Grapevine bud break prediction for cool winter climates.
 #' Int. J. Biometeorol., 54, 231–241.
 
-cdd.single.triangle.budbreak <- function(cdd, start.date){
+cdd.single.triangle.budbreak <- function(cdd, start.month, start.day){
+
   idx <- lapply(cdd, FUN = function(x){
-    idx <- index(x)[start.date]
+
+    data_2mar <- x[.indexmon(x) == start.month-1 & .indexmday(x) == start.day,]
+    idx       <- which(index(x) == index(data_2mar))
+
+    idx <- index(x)[idx]
     idx.subset <- paste0(idx,"/")
+
     subset <- x[idx.subset]
 
     cdd.bb <- as.numeric(coredata(subset[,"cdd_st"])) - rep(as.numeric(coredata(subset[1,"cdd_st"])), nrow(subset))

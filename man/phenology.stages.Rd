@@ -4,7 +4,7 @@
 \alias{phenology.stages}
 \title{Compute phenological stages}
 \usage{
-phenology.stages(cdd.phen, ref.data, stage)
+phenology.stages(cdd.phen, ref.data, stage, cultivar)
 }
 \arguments{
 \item{cdd.phen}{list, cumulative degree days (in Celsius degrees) for vine growth in xts format as

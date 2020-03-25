@@ -4,7 +4,8 @@
 \name{data_remich}
 \alias{data_remich}
 \title{Sample of meteorological data for Remich station}
-\format{Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
+\format{
+Formal class 'STFDF' [package "spacetime"] with 4 slots \cr
 ..@ data   :'data.frame':	17532 obs. of  8 variables: \cr
 .. ..$ Year    : num [1:17532] 1970 1970 1970 1970 1970 1970 1970 1970 1970 1970 ... \cr
 .. ..$ Month   : num [1:17532] 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -40,7 +41,8 @@
 Indexed by objects of class: [POSIXct,POSIXt] TZ: \cr
   xts Attributes: \cr
   NULL \cr
-..@ endTime: POSIXct[1:17532], format: "1970-01-02" "1970-01-03" "1970-01-04" "1970-01-05" ...}
+..@ endTime: POSIXct[1:17532], format: "1970-01-02" "1970-01-03" "1970-01-04" "1970-01-05" ...
+}
 \source{
 \url{https://agriculture.public.lu/de/weinbau-oenologie.html}
 }

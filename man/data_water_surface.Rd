@@ -4,7 +4,8 @@
 \name{data_water_surface}
 \alias{data_water_surface}
 \title{A 'sp' object for the water surfaces in Grevenmacher}
-\format{Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
+\format{
+Formal class 'SpatialPolygonsDataFrame' [package "sp"] with 5 slots \cr
 ..@ data       :'data.frame':	1373 obs. of  5 variables: \cr
  .. ..$ cat     : int [1:1373] 1 2 3 4 5 6 7 8 9 10 ... \cr
  .. ..$ id      : int [1:1373] 1 1 1 1 1 1 1 1 1 1 ... \cr
@@ -27,7 +28,8 @@
  .. .. .. ..@ area     : num 145 \cr
  .. ..$ :Formal class 'Polygons' [package "sp"] with 5 slots \cr
  .. .. .. ..@ Polygons :List of 1 \cr
- .. .. .. ..[list output truncated]}
+ .. .. .. ..[list output truncated]
+}
 \source{
 \url{  https://data.public.lu/en/datasets/bd-l-tc-surface-deau/#_}
 }
