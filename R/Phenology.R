@@ -254,10 +254,10 @@ cdd.luhThresh <- function(data, t.mean.col, a, b, c){
   }
   )
 
-  cdd.LUHtt <- mapply(FUN = function(x, cdd.LUHtt) as.xts(cbind(x, cdd_luht = cumsum(cdd.LUHtt))),
-                    x = data, cdd.LUHtt = dd.LUHtt)
+  cdd.LUHtt1 <- mapply(FUN = function(x, cdd.LUHtt) as.xts(cbind(x, cdd_luht = cumsum(cdd.LUHtt))),
+                    x = data, cdd.LUHtt = dd.LUHtt, SIMPLIFY = FALSE)
 
-  return(cdd.LUHtt)
+  return(cdd.LUHtt1)
 }
 
 #' Cumulative degree days (CDD) by the lower, upper and heat temperature thresholds for phenology
