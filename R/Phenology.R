@@ -329,7 +329,8 @@ cdd.simple.luhThresh.phenology <- function(cdd.bb, cdd.luht, chs.mean){
   # x <- 46
   idx <- lapply(1:length(cdd.bb), FUN = function(x){
     idx <- which(as.numeric(cdd.bb[[x]]$cdd_simple) <= chs.mean)
-    idx <- idx[length(idx)] + 1
+    # idx <- idx[length(idx)] + 1 # TODO: CHECK IF 1 IS IT STILL VALID!
+    idx <- idx[length(idx)] + 0 # TODO: CHECK IF 1 IS IT STILL VALID!
     idx <- index(cdd.bb[[x]][idx,])
 
     idx1 <- which(index(cdd.luht[[x]]$cdd_luht) == idx)

@@ -10,3 +10,8 @@ tools for investigating e.g. the future frost risk in winegrowing regions
 by assessing the effect of simulated future climate conditions on the
 timing of bud break and last frost date. Late frost risk can be assessed
 by the implementation of phenological models for bud break of the grapevine.
+
+
+What's new!
+- 2020-10-24  Version 0.1.1, added "data_remich_rivaner_d68" dataset for 
+              Yield Model functions.

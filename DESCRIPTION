@@ -1,7 +1,7 @@
 Package: vineyard
 Type: Package
 Title: Bud Break, Phenological and Yield Models for Vineyards
-Version: 0.1.0
+Version: 0.1.1
 Author: D. Molitor [aut]
     J. Junk [aut]
     J. A. Torres-Matallana [cre, aut]

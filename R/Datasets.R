@@ -360,8 +360,6 @@ NULL
 #' @keywords data
 NULL
 
-
-
 #' Observed day of year (DOY) of stage BBCH-09 in Remich
 #'
 #' A sample dataset containing the Observed day of year (DOY) of stage BBCH-09 in Remich
@@ -413,3 +411,40 @@ NULL
 #' @references Daniel Molitor, ...
 #' @keywords data
 NULL
+
+
+#' Average dates of BBCH 09, 63, 68 and 81 for Rivaner in Remich
+#'
+#' A sample dataset containing the average dates of BBCH 09 (budbreak),
+#' 63 (early bloom: 30\% of caps fallen), 68 (80\% of caps fallen) and 81
+#' (beginning of ripening) in Luxembourg for the wine grape cultivars
+#' Müller-Thurgau (Rivaner).
+#' Data were arranged relative to 1 January (DOY) or relative to the date
+#' of BBCH 68 (D68). Table 2 from Molitor ad Keller (2016).
+#'
+#' @name data_remich_rivaner_d68
+#' @docType data
+#'
+#' @usage data(data_remich_rivaner_d68)
+#'
+#' @format 'data.frame':	23 obs. of  9 variables: \cr
+#' $ Year       : int  1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 ... \cr
+#' $ BBCH.09_DOY: int  116 118 120 119 115 120 117 117 126 113 ... \cr
+#' $ BBCH.09_D68: int  -48 -58 -61 -61 -63 -54 -56 -49 -50 -58 ... \cr
+#' $ BBCH.63_DOY: int  158 172 177 172 166 169 167 162 172 167 ... \cr
+#' $ BBCH.63_D68: int  -6 -4 -4 -8 -12 -5 -6 -4 -4 -4 ... \cr
+#' $ BBCH.68_DOY: int  164 176 181 180 178 174 173 166 176 171 ... \cr
+#' $ BBCH.68_D68: int  0 0 0 0 0 0 0 0 0 0 ... \cr
+#' $ BBCH.81_DOY: int  224 227 230 236 230 232 230 228 229 227 ... \cr
+#' $ BBCH.81_D68: int  60 51 49 56 52 58 57 62 53 56 ... \cr
+#'
+#' @references Daniel Molitor, and Markus Keller. Yield of Müller-Thurgau
+#' and Riesling grapevines is altered by meteorological conditions in the
+#' current and previous growing seasons.
+#' Vine and Wine Open Access Journal, Oneo One, 50(4):245-258, 2016.
+#'
+#' @source Institut Viti-vinicole, Remich.
+#'
+#' @keywords data
+NULL
+
