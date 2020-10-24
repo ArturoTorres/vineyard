@@ -13,5 +13,5 @@ by the implementation of phenological models for bud break of the grapevine.
 
 
 What's new!
-- 2020-10-24  Version 0.1.1, added "data_remich_rivaner_d68" dataset for 
-              Yield Model functions.
+- 2020-10-24, version 0.1.1: Added "data_remich_rivaner_d68" and 
+              "data_remich_yield" datasets for Yield Model functions.

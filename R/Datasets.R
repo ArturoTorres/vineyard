@@ -448,3 +448,32 @@ NULL
 #' @keywords data
 NULL
 
+
+#' Average annual yield for Rivaner and Riesling, and meteorological variables in Remich
+#'
+#' Average annual yield (hl/ha) in Luxembourg for the wine grape cultivars
+#' Müller-Thurgau and Riesling, as well as key annual and growing season
+#' (April – October) meteorological variables (meteorological data from
+#' Remich). Table 1 from Molitor ad Keller (2016).
+#'
+#' @name data_remich_yield
+#' @docType data
+#'
+#' @usage data(data_remich_yield)
+#'
+#' @format 'data.frame':	23 obs. of  7 variables: \cr
+#' $ Year                        : int  1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 ... \cr
+#' $ Yield_MuellerThurgau_hl_ha  : int  137 147 130 118 49 142 162 109 122 140 ... \cr
+#' $ Yield_Riesling_hl_ha        : int  96 94 77 78 64 102 110 95 72 98 ... \cr
+#' $ Mean_annual_temp_C          : num  9.9 11.1 10.6 9 10.4 10.2 11.3 11.3 10.7 11.1 ... \cr
+#' $ Mean_growing_season.temp_C  : num  14.4 14.9 15.3 13.9 14.7 14.6 15.3 15.3 15.3 15 ... \cr
+#' $ Annual_precip_sum_mm        : int  737 741 816 534 785 790 732 948 994 776 ... \cr
+#' $ Growing_season_precip_sum_mm: int  437 451 387 280 461 560 409 596 562 414 ... \cr
+#'
+#' @references Daniel Molitor, and Markus Keller. Yield of Müller-Thurgau
+#' and Riesling grapevines is altered by meteorological conditions in the
+#' current and previous growing seasons.
+#' Vine and Wine Open Access Journal, Oneo One, 50(4):245-258, 2016.
+#'
+#' @keywords data
+NULL
