@@ -165,6 +165,7 @@ NULL
 #' @keywords data
 NULL
 
+
 #' A 'sp' object for the Grevenmacher admininistrative boundaries
 #'
 #' A dataset containing a 'sp' object for the admininistrative boundaries of the District of Grevenmacher
@@ -225,6 +226,7 @@ NULL
 #'
 #' @keywords data
 NULL
+
 
 #' A 'sp' object for the water surfaces in Grevenmacher
 #'
@@ -294,6 +296,7 @@ NULL
 #' @keywords data
 NULL
 
+
 #' A 'sp' object for the vineyards along the Mosel in Luxemburg in 2018
 
 #'
@@ -359,6 +362,7 @@ NULL
 #'
 #' @keywords data
 NULL
+
 
 #' Observed day of year (DOY) of stage BBCH-09 in Remich
 #'
@@ -437,6 +441,39 @@ NULL
 #' $ BBCH.68_D68: int  0 0 0 0 0 0 0 0 0 0 ... \cr
 #' $ BBCH.81_DOY: int  224 227 230 236 230 232 230 228 229 227 ... \cr
 #' $ BBCH.81_D68: int  60 51 49 56 52 58 57 62 53 56 ... \cr
+#'
+#' @references Daniel Molitor, and Markus Keller. Yield of Müller-Thurgau
+#' and Riesling grapevines is altered by meteorological conditions in the
+#' current and previous growing seasons.
+#' Vine and Wine Open Access Journal, Oneo One, 50(4):245-258, 2016.
+#'
+#' @source Institut Viti-vinicole, Remich.
+#'
+#' @keywords data
+NULL
+
+
+#' Average dates of BBCH 09, 63, and 68 for Riesling in Remich
+#'
+#' A sample dataset containing the average dates of BBCH 09 (budbreak),
+#' BBCH 63 (early bloom: 30\% of caps fallen), and BBCH 68 (80\% of caps fallen)
+#' in Luxembourg for the wine grape cultivar Riesling.
+#' Data were arranged relative to 1 January (DOY) or relative to the date
+#' of BBCH 68 (D68). Table 2 from Molitor ad Keller (2016).
+#'
+#' @name data_remich_riesling_d68
+#' @docType data
+#'
+#' @usage data(data_remich_riesling_d68)
+#'
+#' @format 'data.frame':	23 obs. of  7 variables: \cr
+#' $ Year       : int  1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 ...\cr
+#' $ BBCH.09_DOY: int  116 119 120 119 115 120 119 115 126 113 ...\cr
+#' $ BBCH.09_D68: int  -49 -59 -61 -62 -63 -52 -54 -51 -50 -58 ...\cr
+#' $ BBCH.63_DOY: int  159 173 177 171 166 166 167 162 172 167 ...\cr
+#' $ BBCH.63_D68: int  -6 -5 -4 -10 -12 -6 -6 -4 -4 -4 ...\cr
+#' $ BBCH.68_DOY: int  165 178 181 181 178 172 173 166 176 171 ...\cr
+#' $ BBCH.68_D68: int  0 0 0 0 0 0 0 0 0 0 ...\cr
 #'
 #' @references Daniel Molitor, and Markus Keller. Yield of Müller-Thurgau
 #' and Riesling grapevines is altered by meteorological conditions in the

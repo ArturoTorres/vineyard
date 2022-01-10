@@ -69,3 +69,106 @@ plot_na <- function(x, ids.na){
 fill.na <- function(x){
   x.full <- na.approx(x)
 }
+
+
+#' Defining data.frame for yield and disease computation
+#'
+#' @param data.years list of zoo time series from the input data splitted by years.
+#' @param year.ini numeric, the initial year for computation.
+#' @param year.end numeric, the final year for computation.
+#' @param phen.luht data.frame for the phenology computation by lower, upper and heat thresholds (luht).
+#' @param bbch.stage numeric, the reference BBCH stage.
+#'
+#' @return  a list with two objects: 1) data.years.subset, the input data.years data.frame subsetted
+#' according to the initial and ending year definition; and 2) phen.d_bbch_x.df2, a data.frame with two
+#' columns per reference BBCH stage defined, the first column is the actual BBCH DOY and the second column is
+#' the DOY for the reference BBCH (a vector of zeros, BBCH DOY reference minus BBCH DOY reference).
+#'
+#' @importFrom "xts" "xts"
+#'
+#' @export phen.d_bcch_x.df2
+
+phen.d_bcch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.stage){
+  # Subsetting data
+  years.lst <- lapply(data.years, function(x) out <- x[1, "Year"])
+
+  years <- do.call(rbind, years.lst)
+
+  id.subset <- which(years == year.ini | years == year.end)
+  data.years.subset <- data.years[id.subset[1]:id.subset[2]]
+
+  # D68 definition
+  head(data.years.subset[[1]])
+
+  phen.luht.subset <- phen.luht[id.subset[1]:id.subset[2]]
+  phen.luht.subset[[1]]
+
+  phen.d_bbch_x <- lapply(phen.luht.subset, function(x) {
+    d_bbch_x <- x[,"DayYear"]
+
+    bbch.id <- which(x[, "BBCH_stage"] == bbch.stage)
+
+    d_bbch_x <- d_bbch_x[c(bbch.id)]
+    d_bbch_x <- as.matrix(t(as.numeric(d_bbch_x)))
+
+    colnames(d_bbch_x) <- paste0("BBCH.", bbch.stage)
+    row.names(d_bbch_x) <- x[1,"Year"]
+
+    return(d_bbch_x)
+  })
+
+  phen.d_bbch_x[[1]]
+  #      BBCH.09 BBCH.63 BBCH.68 BBCH.81
+  # 1993     116     161     167     218
+
+  phen.d_bbch_x <- do.call(rbind, phen.d_bbch_x)
+  phen.d_bbch_x.df <- data.frame(matrix(as.numeric(phen.d_bbch_x),
+                                   nrow = nrow(phen.d_bbch_x), ncol = ncol(phen.d_bbch_x)))
+  colnames(phen.d_bbch_x.df) <- colnames(phen.d_bbch_x)
+  row.names(phen.d_bbch_x.df) <- row.names(phen.d_bbch_x)
+  phen.d_bbch_x.df
+
+  #' D_x definition
+  phen.d_bbch_x.df2 <- cbind(phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)],
+                        phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)] - phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)]
+                        )
+  colnames(phen.d_bbch_x.df2) <- mapply(function(i, y) paste0(i, y), i = colnames(phen.d_bbch_x.df2),
+                                        y = c("_DOY", paste0("_D", bbch.stage)))
+  phen.d_bbch_x.df2
+  # summary(phen.d_bbch_x.df2)
+  # row.names(phen.d68.df2)
+
+  return(list(data.years.subset = data.years.subset,
+              phen.d_bbch_x.df2 = phen.d_bbch_x.df2))
+}
+
+#' Time window pane analysis
+#'
+#' @param x zoo, time series from the input data for one individual year.
+#' @param var character, the name of the variable for computing the window pane statistics.
+#' @param fun character, name of the function for computation in the window pane.
+#' @param t.ini numeric, the initial number in days from the reference to start the window pane statistics.
+#' @param width numeric, the width in days of the window pane.
+#' @param d68 numeric, one value for the DOY of the reference BBCH stage to computeing the statistic for
+#' the corresponding year.
+#'
+#' @return  numeric, a vector of two values: 1) the computation year; and 2) the computed statistic for the
+#' corresponding year.
+#'
+#' @importFrom "xts" "xts"
+#'
+#' @export window.stat
+
+# x <- remich.years.subset[[1]]
+window.stat <- function(x, var, fun, t.ini, width, d68  = FALSE){
+  if(d68 == FALSE){
+    out <- data.frame(stat = coredata(x[t.ini:(t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
+  }else {
+    out <- data.frame(stat = coredata(x[(d68+t.ini):(d68+t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
+  }
+
+  out <- apply(X = out, MARGIN = 2, FUN = function(y) as.numeric(as.character(y)))
+  out <- apply(X = out, MARGIN = 2, FUN = fun)
+
+  return(out)
+}

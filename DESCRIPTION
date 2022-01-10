@@ -1,7 +1,7 @@
 Package: vineyard
 Type: Package
 Title: Bud Break, Phenological and Yield Models for Vineyards
-Version: 0.1.1
+Version: 0.1.3
 Author: D. Molitor [aut]
     J. Junk [aut]
     J. A. Torres-Matallana [cre, aut]
@@ -21,7 +21,7 @@ Description: Late frosts are a significant risk to grape production in
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports:
     xts,
     zoo
