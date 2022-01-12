@@ -17,8 +17,8 @@
 
 \item{width}{numeric, the width in days of the window pane.}
 
-\item{d68}{numeric, one value for the DOY of the reference BBCH stage to computeing the statistic for
-the corresponding year.}
+\item{d68}{numeric or logical, one numeric value for the DOY of the reference BBCH stage to computing the statistic for
+the corresponding year or FALSE if reference BBCH stage day is not taken i.e. computation in actual DOY.}
 }
 \value{
 numeric, a vector of two values: 1) the computation year; and 2) the computed statistic for the

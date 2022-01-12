@@ -86,9 +86,9 @@ fill.na <- function(x){
 #'
 #' @importFrom "xts" "xts"
 #'
-#' @export phen.d_bcch_x.df2
+#' @export phen.d_bbch_x.df2
 
-phen.d_bcch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.stage){
+phen.d_bbch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.stage){
   # Subsetting data
   years.lst <- lapply(data.years, function(x) out <- x[1, "Year"])
 
@@ -149,8 +149,8 @@ phen.d_bcch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.st
 #' @param fun character, name of the function for computation in the window pane.
 #' @param t.ini numeric, the initial number in days from the reference to start the window pane statistics.
 #' @param width numeric, the width in days of the window pane.
-#' @param d68 numeric, one value for the DOY of the reference BBCH stage to computeing the statistic for
-#' the corresponding year.
+#' @param d68 numeric or logical, one numeric value for the DOY of the reference BBCH stage to computing the statistic for
+#' the corresponding year or FALSE if reference BBCH stage day is not taken i.e. computation in actual DOY.
 #'
 #' @return  numeric, a vector of two values: 1) the computation year; and 2) the computed statistic for the
 #' corresponding year.
@@ -171,4 +171,60 @@ window.stat <- function(x, var, fun, t.ini, width, d68  = FALSE){
   out <- apply(X = out, MARGIN = 2, FUN = fun)
 
   return(out)
+}
+
+#' Linear regression applied
+#'
+#' @param stat.tmin1 numeric, vector with two columns: 1) year, and 2) statistics for minimun temperature in the previous year
+#' @param stat.tmean1
+#' @param stat.tmax1
+#' @param stat.tmean0
+#' @param stat.rain01
+#' @param stat.rain02
+#' @param stat.tmin0
+#' @param vars
+#' @param coef
+#'
+#' @return  numeric, a vector of two values: 1) the computation year; and 2) the computed statistic for the
+#' corresponding year.
+#'
+#' @importFrom "xts" "xts"
+#'
+#' @export lr.applied
+
+# x <- remich.years.subset[[1]]
+lr.applied.rivaner <- function(stat.tmin1, stat.tmean1, stat.tmax1, stat.tmean0,
+                               stat.rain01, stat.rain02, stat.tmin0, vars, coef){
+  stats <- cbind.data.frame(year   = stat.tmin1[,1],
+                            tmin1  = stat.tmin1[,2],
+                            tmean1 = stat.tmean1[,2],
+                            tmax1  = stat.tmax1[,2],
+                            tmean0 = stat.tmean0[,2],
+                            rain01 = stat.rain01[,2],
+                            rain02 = stat.rain02[,2],
+                            tmin0  = stat.tmin0[,2])
+
+  My.yield.rivaner <- function(vars, coef){
+    yield <- matrix(NA, nrow = nrow(vars), ncol = 1)
+
+    # i <- 2
+    for(i in 2:nrow(vars)){
+      dat <- coef[,"tmin1"]*vars[i-1,"tmin1"] + coef[,"tmean1"]*vars[i-1,"tmean1"] +
+        coef[,"tmax1"]*vars[i-1,"tmax1"] + coef[,"tmean0"]*vars[i,"tmean0"] +
+        coef[,"rain01"]*vars[i,"rain01"] + coef[,"rain02"]*vars[i,"rain02"] +
+        coef[,"tmin0"]*vars[i,"tmin0"]
+      yield[i,1] <- coef[1, "intercept"] + dat
+    }
+
+    yield <- cbind.data.frame(year = vars[,1], yield = yield)
+    return(yield)
+  }
+
+  # yield.rivaner <- cbind.data.frame(My.yield.rivaner(vars = stats, coef = coef.molitor),
+  #                                   yield_historical_hlperha = data_remich_yield[,"Yield_MuellerThurgau_hl_ha"])
+  # GoF(yield.rivaner, col_sim = 2, col_obs = 3)
+  yield.rivaner <- cbind.data.frame(My.yield.rivaner(vars = stats, coef = coef.molitor))
+
+  return(yield.rivaner)
+
 }
