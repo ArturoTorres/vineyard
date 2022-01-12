@@ -4,7 +4,7 @@
 \alias{window.stat}
 \title{Time window pane analysis}
 \usage{
-\method{window}{stat}(x, var, fun, t.ini, width, d68 = FALSE)
+\method{window}{stat}(x, var, fun, t.ini, width, d.ref = FALSE)
 }
 \arguments{
 \item{x}{zoo, time series from the input data for one individual year.}

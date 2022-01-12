@@ -85,10 +85,9 @@ fill.na <- function(x){
 #' the DOY for the reference BBCH (a vector of zeros, BBCH DOY reference minus BBCH DOY reference).
 #'
 #' @importFrom "xts" "xts"
-#'
-#' @export phen.d_bbch_x.df2
+#' @export phen.dbbchx.df2
 
-phen.d_bbch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.stage){
+phen.dbbchx.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.stage){
   # Subsetting data
   years.lst <- lapply(data.years, function(x) out <- x[1, "Year"])
 
@@ -128,7 +127,7 @@ phen.d_bbch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.st
   row.names(phen.d_bbch_x.df) <- row.names(phen.d_bbch_x)
   phen.d_bbch_x.df
 
-  #' D_x definition
+  # D_x definition
   phen.d_bbch_x.df2 <- cbind(phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)],
                         phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)] - phen.d_bbch_x.df[colnames(phen.d_bbch_x.df)]
                         )
@@ -160,11 +159,11 @@ phen.d_bbch_x.df2 <- function(data.years, year.ini, year.end, phen.luht, bbch.st
 #' @export window.stat
 
 # x <- remich.years.subset[[1]]
-window.stat <- function(x, var, fun, t.ini, width, d68  = FALSE){
-  if(d68 == FALSE){
-    out <- data.frame(stat = coredata(x[t.ini:(t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
+window.stat <- function(x, var, fun, t.ini, width, d.ref  = FALSE){
+  if(d.ref == FALSE){
+    out <- data.frame(stat = coredata(x[t.ini:(t.ini + width), c("Year", var)]), stringsAsFactors = FALSE)
   }else {
-    out <- data.frame(stat = coredata(x[(d68+t.ini):(d68+t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
+    out <- data.frame(stat = coredata(x[(d.ref+t.ini):(d.ref+t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
   }
 
   out <- apply(X = out, MARGIN = 2, FUN = function(y) as.numeric(as.character(y)))
