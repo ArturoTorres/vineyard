@@ -172,3 +172,48 @@ window.stat <- function(x, var, fun, t.ini, width, d.ref  = FALSE){
   return(out)
 }
 
+#' Linear regression applied for calculating the CDD_7;18;24 reaching 5\% disease severity (Botrytis cinerea) for Riesling
+#'
+#' @param stat.tmean01 numeric, vector with two columns: 1) year, and 2) first statistic for mean temperature.
+#' @param stat.tmean02 numeric, vector with two columns: 1) year, and 2) second statistic for mean temperature.
+#' @param stat.tmean03 numeric, vector with two columns: 1) year, and 2) third statistic for mean temperature.
+#' @param stat.rain01 numeric, vector with two columns: 1) year, and 2) first statistic for precipitation.
+#' @param stat.rain02 numeric, vector with two columns: 1) year, and 2) second statistic for precipitation.
+#' @param coef the predefined linear regression coefficients,  1 observation of 6 variables, being the first
+#' the intercept, and the remainder variables the coefficients for each statistic matching the definition order.
+#'
+#' @return  data.frame, 7 obs. of 2 variables (year and CDD for 7, 18 and 24 thresholds reaching 5\% disease severity,
+#' Botrytis cinerea, for Riesling).
+#'
+#' @export botrytis.lr.applied.riesling
+
+botrytis.lr.applied.riesling <- function(stat.tmean01, stat.tmean02, stat.tmean03, stat.rain01, stat.rain02, coef){
+
+  stats <- cbind.data.frame(year   = stat.tmean01[,1],
+                            tmean01  = stat.tmean01[,2],
+                            tmean02 = stat.tmean02[,2],
+                            tmean03 = stat.tmean03[,2],
+                            rain01 = stat.rain01[,2],
+                            rain02 = stat.rain02[,2])
+
+  My.botrytis.reisling <- function(vars, coef){
+    cdd_5perc_botrytis <- matrix(NA, nrow = nrow(vars), ncol = 1)
+
+    for(i in 1:nrow(vars)){
+      dat <- coef[,"tmean01"]*vars[i,"tmean01"] + coef[,"tmean02"]*vars[i,"tmean02"] +
+        coef[,"tmean03"]*vars[i,"tmean03"] +
+        coef[,"rain01"]*vars[i,"rain01"] + coef[,"rain02"]*vars[i,"rain02"]
+
+      cdd_5perc_botrytis[i,1] <- coef[1, "intercept"] + dat
+    }
+
+    bot <- cbind.data.frame(year = vars[,1], cdd_5perc_botrytis = cdd_5perc_botrytis)
+
+    return(bot)
+  }
+
+  botrytis.riesling <- cbind.data.frame(My.botrytis.reisling(vars = stats, coef = coef))
+
+  return(botrytis.riesling)
+}
+
