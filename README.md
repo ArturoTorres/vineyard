@@ -19,3 +19,4 @@ What's new!
               for Yield Model functions.
 - 2022-01-10, version 0.1.3: Added auxiliary functions "phen.d_bbch_x.df2" and
 	      "window.stat" for yield and disease models.
+- 2022-01-18, version 0.1.3: Added botrytis.lr.applied.riesling function.
