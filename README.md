@@ -20,3 +20,6 @@ What's new!
 - 2022-01-10, version 0.1.3: Added auxiliary functions "phen.d_bbch_x.df2" and
 	      "window.stat" for yield and disease models.
 - 2022-01-18, version 0.1.3: Added botrytis.lr.applied.riesling function.
+- 2022-01-26, version 0.1.3: Added yield.lr.applied.riesling function. Added
+	      functionality in prediction with confidence intervals for yield 
+	      and botrytis models.
