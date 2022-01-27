@@ -13,15 +13,16 @@
 #'
 #' @export yield.lr.applied.riesling
 
-yield.lr.applied.riesling <- function(stat.tmin1.ries, stat.tmin01.ries, stat.tmin02.ries, stat.rain0.ries,
-                                      stat.rain1.ries, model){
+yield.lr.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmin01.ries,
+                                      stat.rain1.ries, stat.tmin02.ries, model){
 
   stats <- cbind.data.frame(year   = stat.tmin1.ries[,1],
-                            a  = stat.tmin1.ries[,2],
-                            b = stat.tmin01.ries[,2],
-                            c = stat.tmin02.ries[,2],
-                            d = stat.rain0.ries[,2],
-                            e = stat.rain1.ries[,2])
+                            a = stat.rain0.ries[,2],
+                            b = stat.tmin1.ries[,2],
+                            c = stat.tmin01.ries[,2],
+                            d = stat.rain1.ries[,2],
+                            e = stat.tmin02.ries[,2]
+                            )
 
   My.yield.reisling <- function(vars, model){
     yield <- predict(object = model, newdata = vars, interval = "confidence")
@@ -31,7 +32,7 @@ yield.lr.applied.riesling <- function(stat.tmin1.ries, stat.tmin01.ries, stat.tm
     return(yield)
   }
 
-  yield.riesling <- cbind.data.frame(My.yield.reisling(vars = stats, model = lr.yield.riesling))
+  yield.riesling <- cbind.data.frame(My.yield.reisling(vars = stats, model = model))
 
   return(yield.riesling)
 }

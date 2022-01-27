@@ -30,7 +30,7 @@ botrytis.lr.applied.riesling <- function(stat.tmean01, stat.tmean02, stat.tmean0
     return(bot)
   }
 
-  botrytis.riesling <- cbind.data.frame(My.botrytis.reisling(vars = stats, model = lr.botrytis.riesling))
+  botrytis.riesling <- cbind.data.frame(My.botrytis.reisling(vars = stats, model = model))
 
   return(botrytis.riesling)
 }

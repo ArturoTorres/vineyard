@@ -5,24 +5,24 @@
 \title{Linear regression applied for predicting yield for Riesling}
 \usage{
 yield.lr.applied.riesling(
+  stat.rain0.ries,
   stat.tmin1.ries,
   stat.tmin01.ries,
-  stat.tmin02.ries,
-  stat.rain0.ries,
   stat.rain1.ries,
+  stat.tmin02.ries,
   model
 )
 }
 \arguments{
+\item{stat.rain0.ries}{numeric, vector with two columns: 1) year, and 2) first statistic for precipitation.}
+
 \item{stat.tmin1.ries}{numeric, vector with two columns: 1) year, and 2) first statistic for min temperature.}
 
 \item{stat.tmin01.ries}{numeric, vector with two columns: 1) year, and 2) second statistic for min temperature.}
 
-\item{stat.tmin02.ries}{numeric, vector with two columns: 1) year, and 2) third statistic for min temperature.}
-
-\item{stat.rain0.ries}{numeric, vector with two columns: 1) year, and 2) first statistic for precipitation.}
-
 \item{stat.rain1.ries}{numeric, vector with two columns: 1) year, and 2) second statistic for precipitation.}
+
+\item{stat.tmin02.ries}{numeric, vector with two columns: 1) year, and 2) third statistic for min temperature.}
 
 \item{model}{the predefined model e.g. linear regression (lm). Should be a match between the linear
 regression coefficients and each statistic in the same definition order.}
