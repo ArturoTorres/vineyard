@@ -514,3 +514,109 @@ NULL
 #'
 #' @keywords data
 NULL
+
+#' Yield model for Riesling cultivar
+#'
+#' A sample dataset containing the Linear regression model calculated by
+#' Daniel Molitor and Markus Keller (2016) for predicting the yield
+#' for Riesling cultivar.
+#'
+#' @name data_lm_yield_riesling
+#'
+#' @docType data
+#'
+#' @usage data(data_lm_yield_riesling)
+#'
+#' @format List of 12  \cr
+#'
+#'
+#' @references and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
+#' is altered by meteorological conditions in the current and previous growing seasons
+#' OENO One, 2016, 50, 4, 245 - 258.
+#'
+#' @keywords data
+NULL
+
+#' Yield model for Rivaner cultivar
+#'
+#' A sample dataset containing the Linear regression model calculated by
+#' Daniel Molitor and Markus Keller (2016) for predicting the yield
+#' for Rivaner cultivar.
+#'
+#' @name data_lm_yield_rivaner
+#'
+#' @docType data
+#'
+#' @usage data(data_lm_yield_rivaner)
+#'
+#' @format List of 12  \cr
+#'
+#'
+#' @references and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
+#' is altered by meteorological conditions in the current and previous growing seasons
+#' OENO One, 2016, 50, 4, 245 - 258.
+#'
+#' @keywords data
+NULL
+
+#' Botrytis cinerea model for Riesling cultivar
+#'
+#' A sample dataset containing the Linear regression model calculated by
+#' Molitor et al. (2020) for predicting the CDD_7;18;24 reaching 5\% disease
+#' severity (Botrytis cinerea) for Riesling cultivar.
+#'
+#' @name data_lm_botrytis_riesling
+#' @docType data
+#'
+#' @usage data(data_lm_botrytis_riesling)
+#'
+#' @format List of 12  \cr
+#' $ coefficients : Named num [1:6] 951.47 7.22 -16.32 10.79 21.99 ...  \cr
+#' ..- attr(*, "names")= chr [1:6] "(Intercept)" "a" "b" "c" ...  \cr
+#' $ residuals    : Named num [1:21] 30.9 43.8 38.7 -52.6 -55.9 ...  \cr
+#' ..- attr(*, "names")= chr [1:21] "1" "2" "3" "4" ... \cr
+#' $ effects      : Named num [1:21] -4372.2 249.2 -175.3 134.1 -77.4 ... \cr
+#' ..- attr(*, "names")= chr [1:21] "(Intercept)" "a" "b" "c" ... \cr
+#' $ rank         : int 6 \cr
+#' $ fitted.values: Named num [1:21] 1055 972 1066 834 941 ... \cr
+#' ..- attr(*, "names")= chr [1:21] "1" "2" "3" "4" ... \cr
+#' $ assign       : int [1:6] 0 1 2 3 4 5 \cr
+#' $ qr           :List of 5 \cr
+#' ..- attr(*, "class")= chr "qr" \cr
+#' $ df.residual  : int 15 \cr
+#' $ xlevels      : Named list() \cr
+#' $ call         : language lm(formula = observed ~ a + b + c + d + e, data = lr.data) \cr
+#' $ terms        :Classes 'terms', 'formula'  language observed ~ a + b + c + d + e \cr
+#' .. ..- attr(*, "variables")= language list(observed, a, b, c, d, e) \cr
+#' .. ..- attr(*, "factors")= int [1:6, 1:5] 0 1 0 0 0 0 0 0 1 0 ... \cr
+#' .. .. ..- attr(*, "dimnames")=List of 2 \cr
+#' .. ..- attr(*, "term.labels")= chr [1:5] "a" "b" "c" "d" ... \cr
+#' .. ..- attr(*, "order")= int [1:5] 1 1 1 1 1 \cr
+#' .. ..- attr(*, "intercept")= int 1 \cr
+#' .. ..- attr(*, "response")= int 1 \cr
+#' .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> \cr
+#'   .. ..- attr(*, "predvars")= language list(observed, a, b, c, d, e) \cr
+#' .. ..- attr(*, "dataClasses")= Named chr [1:6] "numeric" "numeric" "numeric" "numeric" ... \cr
+#' .. .. ..- attr(*, "names")= chr [1:6] "observed" "a" "b" "c" ... \cr
+#' $ model        :'data.frame':	21 obs. of  6 variables: \cr
+#'   ..- attr(*, "terms")=Classes 'terms', 'formula'  language observed ~ a + b + c + d + e \cr
+#' .. .. ..- attr(*, "variables")= language list(observed, a, b, c, d, e) \cr
+#' .. .. ..- attr(*, "factors")= int [1:6, 1:5] 0 1 0 0 0 0 0 0 1 0 ... \cr
+#' .. .. .. ..- attr(*, "dimnames")=List of 2 \cr
+#' .. .. ..- attr(*, "term.labels")= chr [1:5] "a" "b" "c" "d" ... \cr
+#' .. .. ..- attr(*, "order")= int [1:5] 1 1 1 1 1 \cr
+#' .. .. ..- attr(*, "intercept")= int 1 \cr
+#' .. .. ..- attr(*, "response")= int 1 \cr
+#' .. .. ..- attr(*, ".Environment")=<environment: R_GlobalEnv> \cr
+#'   .. .. ..- attr(*, "predvars")= language list(observed, a, b, c, d, e) \cr
+#' .. .. ..- attr(*, "dataClasses")= Named chr [1:6] "numeric" "numeric" "numeric" "numeric" ... \cr
+#' .. .. .. ..- attr(*, "names")= chr [1:6] "observed" "a" "b" "c" ... \cr
+#' - attr(*, "class")= chr "lm" \cr
+#'
+#' @references Daniel Molitor, Ottmar Baus, Yoanne Didry, Jürgen Junk, Lucien Hoffmann
+#' and Marco Beyer (2020). BotRisk: simulating the annual bunch rot risk on grapevines
+#' (Vitis vinifera L. cv. Riesling) based on meteorological data.
+#' International Journal of Biometeorology. DOI 10.1007/s00484-020-01938-5
+#'
+#' @keywords data
+NULL
