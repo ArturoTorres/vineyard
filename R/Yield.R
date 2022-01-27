@@ -58,13 +58,13 @@ yield.lr.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmi
 yield.lr.applied.rivaner <- function(stat.tmin1, stat.tmean1, stat.tmax1, stat.tmean0, stat.rain01, stat.rain02, stat.tmin0, model){
 
   stats <- cbind.data.frame(year   = stat.tmin1[,1],
-                            tmin1  = stat.tmin1[,2],
-                            tmean1 = stat.tmean1[,2],
-                            tmax1  = stat.tmax1[,2],
-                            tmean0 = stat.tmean0[,2],
-                            rain01 = stat.rain01[,2],
-                            rain02 = stat.rain02[,2],
-                            tmin0  = stat.tmin0[,2])
+                            a = stat.tmin1[,2],
+                            b = stat.tmean1[,2],
+                            c = stat.tmax1[,2],
+                            d = stat.tmean0[,2],
+                            e = stat.rain01[,2],
+                            f = stat.rain02[,2],
+                            g  = stat.tmin0[,2])
 
   My.yield.rivaner <- function(vars, model){
     yield <- predict(object = model, newdata = vars, interval = "confidence")

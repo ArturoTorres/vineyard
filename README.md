@@ -23,3 +23,7 @@ What's new!
 - 2022-01-26, version 0.1.3: Added yield.lr.applied.riesling function. Added
 	      functionality in prediction with confidence intervals for yield 
 	      and botrytis models.
+- 2022-01-27, version 0.1.3: Added yield.lr.applied.rivaner function. Added
+	      functionality in prediction with confidence intervals for yield 
+	      Rivaner model. Added datasets for yield and botrytis models.
+
