@@ -16,7 +16,7 @@ Daniel Molitor and Markus Keller (2016) for predicting the yield
 for Rivaner cultivar.
 }
 \references{
-and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
+Daniel Molitor and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
 is altered by meteorological conditions in the current and previous growing seasons
 OENO One, 2016, 50, 4, 245 - 258.
 }

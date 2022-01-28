@@ -530,7 +530,7 @@ NULL
 #' @format List of 12  \cr
 #'
 #'
-#' @references and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
+#' @references Daniel Molitor and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
 #' is altered by meteorological conditions in the current and previous growing seasons
 #' OENO One, 2016, 50, 4, 245 - 258.
 #'
@@ -552,7 +552,7 @@ NULL
 #' @format List of 12  \cr
 #'
 #'
-#' @references and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
+#' @references Daniel Molitor and Markus Keller (2016). Yield of Müller-Thurgau and Riesling grapevines
 #' is altered by meteorological conditions in the current and previous growing seasons
 #' OENO One, 2016, 50, 4, 245 - 258.
 #'

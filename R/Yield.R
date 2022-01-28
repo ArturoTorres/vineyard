@@ -1,4 +1,4 @@
-#' Linear regression applied for predicting yield for Riesling
+#' Linear regression model applied for predicting yield for Riesling
 #'
 #' @param stat.tmin1.ries numeric, vector with two columns: 1) year, and 2) first statistic for min temperature.
 #' @param stat.tmin01.ries numeric, vector with two columns: 1) year, and 2) second statistic for min temperature.
@@ -11,9 +11,9 @@
 #' @return  data.frame, n obs. of 4 variables (year, predicted yield for Riesling), and lower and upper values
 #' represent the uncertainty band with 95 percent confidence level. n is the total number of years for prediction.
 #'
-#' @export yield.lr.applied.riesling
+#' @export lm.yield.applied.riesling
 
-yield.lr.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmin01.ries,
+lm.yield.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmin01.ries,
                                       stat.rain1.ries, stat.tmin02.ries, model){
 
   stats <- cbind.data.frame(year   = stat.tmin1.ries[,1],
@@ -38,7 +38,7 @@ yield.lr.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmi
 }
 
 
-#' Linear regression applied for predicting yield for Rivaner
+#' Linear regression model applied for predicting yield for Rivaner
 #'
 #' @param stat.tmin1 numeric, vector with two columns: 1) year, and 2) first statistic for min temperature.
 #' @param stat.tmean1 numeric, vector with two columns: 1) year, and 2) first statistic for mean temperature.
@@ -53,9 +53,9 @@ yield.lr.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmi
 #' @return  data.frame, n obs. of 4 variables (year, predicted yield for Rivaner), and lower and upper values
 #' represent the uncertainty band with 95 percent confidence level. n is the total number of years for prediction.
 #'
-#' @export yield.lr.applied.rivaner
+#' @export lm.yield.applied.rivaner
 
-yield.lr.applied.rivaner <- function(stat.tmin1, stat.tmean1, stat.tmax1, stat.tmean0, stat.rain01, stat.rain02, stat.tmin0, model){
+lm.yield.applied.rivaner <- function(stat.tmin1, stat.tmean1, stat.tmax1, stat.tmean0, stat.rain01, stat.rain02, stat.tmin0, model){
 
   stats <- cbind.data.frame(year   = stat.tmin1[,1],
                             a = stat.tmin1[,2],

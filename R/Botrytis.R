@@ -1,4 +1,4 @@
-#' Linear regression applied for predicting the CDD_7;18;24 reaching 5\% disease severity (Botrytis cinerea) for Riesling
+#' Linear regression model applied for predicting the CDD_7;18;24 reaching 5\% disease severity (Botrytis cinerea) for Riesling
 #'
 #' @param stat.tmean01 numeric, vector with two columns: 1) year, and 2) first statistic for mean temperature.
 #' @param stat.tmean02 numeric, vector with two columns: 1) year, and 2) second statistic for mean temperature.
@@ -11,9 +11,9 @@
 #' @return  data.frame, n obs. of 4 variables (year, predicted CDD for 7, 18 and 24 thresholds reaching 5\% disease severity,
 #' Botrytis cinerea, for Riesling), and lower and upper confidence intervals. n is the total number of years for prediction.
 #'
-#' @export botrytis.lr.applied.riesling
+#' @export lm.botrytis.applied.riesling
 
-botrytis.lr.applied.riesling <- function(stat.tmean01, stat.tmean02, stat.tmean03, stat.rain01, stat.rain02, model){
+lm.botrytis.applied.riesling <- function(stat.tmean01, stat.tmean02, stat.tmean03, stat.rain01, stat.rain02, model){
 
   stats <- cbind.data.frame(year   = stat.tmean01[,1],
                             a  = stat.tmean01[,2],
