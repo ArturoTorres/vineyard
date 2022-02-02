@@ -16,12 +16,12 @@
 lm.yield.applied.riesling <- function(stat.rain0.ries, stat.tmin1.ries, stat.tmin01.ries,
                                       stat.rain1.ries, stat.tmin02.ries, model){
 
-  stats <- cbind.data.frame(year   = stat.rain0.ries[2:nrow(stat.rain0.ries),1],
-                            a = stat.rain0.ries[2:nrow(stat.rain0.ries),2],
-                            b = stat.tmin1.ries[1:(nrow(stat.tmin1.ries)-1),2],
-                            c = stat.tmin01.ries[2:nrow(stat.tmin01.ries),2],
-                            d = stat.rain1.ries[1:(nrow(stat.rain1.ries)-1),2],
-                            e = stat.tmin02.ries[2:nrow(stat.tmin02.ries),2]
+  stats <- cbind.data.frame(year   = stat.rain0.ries[,1],
+                            a = stat.rain0.ries[,2],
+                            b = stat.tmin1.ries[,2],
+                            c = stat.tmin01.ries[,2],
+                            d = stat.rain1.ries[,2],
+                            e = stat.tmin02.ries[,2]
                             )
 
   My.yield.riesling <- function(vars, model){
