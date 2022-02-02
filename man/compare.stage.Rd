@@ -4,7 +4,7 @@
 \alias{compare.stage}
 \title{Compare by growth stage from phenology output}
 \usage{
-compare.stage(ref.data, phen, growth.stage)
+\method{compare}{stage}(ref.data, phen, growth.stage)
 }
 \arguments{
 \item{ref.data}{data.frame, reference dataset to define the observations for the phenological stage to compare
