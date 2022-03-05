@@ -163,7 +163,9 @@ window.stat <- function(x, var, fun, t.ini, width, d.ref  = FALSE){
   if(d.ref == FALSE){
     out <- data.frame(stat = coredata(x[t.ini:(t.ini + width), c("Year", var)]), stringsAsFactors = FALSE)
   }else {
-    out <- data.frame(stat = coredata(x[(d.ref+t.ini):(d.ref+t.ini+width), c("Year", var)]), stringsAsFactors = FALSE)
+    idx <- d.ref + t.ini
+    if(idx <= 0) idx <- 1
+    out <- data.frame(stat = coredata(x[(idx):(idx + width), c("Year", var)]), stringsAsFactors = FALSE)
   }
 
   out <- apply(X = out, MARGIN = 2, FUN = function(y) as.numeric(as.character(y)))
