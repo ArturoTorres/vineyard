@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+
 vineyard is a software package developed by LIST.
 
 Late frosts are a significant risk to grape production in

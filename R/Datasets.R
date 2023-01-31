@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Sample of meteorological data for Remich station
 #'
 #' A sample dataset containing time series of meteorological data for Remich station located in the

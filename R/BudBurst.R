@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Cumulative degree days (CDD) by the simple algorithm
 #'
 #' Implementation to compute the cumulative degree days by the simple algorithm by Nendel (2010).

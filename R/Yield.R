@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Linear regression model applied for predicting yield for Riesling
 #'
 #' @param stat.tmin1.ries numeric, vector with two columns: 1) year, and 2) first statistic for min temperature.

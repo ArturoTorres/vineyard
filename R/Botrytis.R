@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Linear regression model applied for predicting the CDD_7;18;24 reaching 5\% disease severity (Botrytis cinerea) for Riesling
 #'
 #' @param stat.tmean01 numeric, vector with two columns: 1) year, and 2) first statistic for mean temperature.

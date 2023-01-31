@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Raw data to xts object
 #'
 #' @param data the dataframe to convert to xts time series.

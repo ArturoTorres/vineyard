@@ -1,3 +1,5 @@
+# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+#
 #' Compute degree days by the single (lower) temperature threshold
 #'
 #' Implementation to compute degree days by the single (lower) temperature threshold by Molitor et al., (2014).
