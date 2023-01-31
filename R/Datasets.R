@@ -617,6 +617,6 @@ NULL
 #' and Marco Beyer (2020). BotRisk: simulating the annual bunch rot risk on grapevines
 #' (Vitis vinifera L. cv. Riesling) based on meteorological data.
 #' International Journal of Biometeorology. DOI 10.1007/s00484-020-01938-5
-#'
+
 #' @keywords data
 NULL
