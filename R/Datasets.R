@@ -612,7 +612,7 @@ NULL
 #' .. .. ..- attr(*, "dataClasses")= Named chr [1:6] "numeric" "numeric" "numeric" "numeric" ... \cr
 #' .. .. .. ..- attr(*, "names")= chr [1:6] "observed" "a" "b" "c" ... \cr
 #' - attr(*, "class")= chr "lm" \cr
-#'
+
 #' @references Daniel Molitor, Ottmar Baus, Yoanne Didry, Jürgen Junk, Lucien Hoffmann
 #' and Marco Beyer (2020). BotRisk: simulating the annual bunch rot risk on grapevines
 #' (Vitis vinifera L. cv. Riesling) based on meteorological data.
