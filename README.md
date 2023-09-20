@@ -1,4 +1,6 @@
-# © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
+# vineyard: Bud Break, Phenological and Yield Models for Vineyards
+
+### © 2023 Luxembourg Institute of Science and Technology All Rights Reserved
 
 vineyard is a software package developed by LIST.
 
